@@ -5,6 +5,6 @@
 <configuration>
     <!-- 设置别名 -->
     <typeAliases>
-        <package name="chen.mingyu.domain" />
+        <package name="flower.fruit.shop.domain" />
     </typeAliases>
 </configuration>
