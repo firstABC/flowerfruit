@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import flower.fruit.shop.domain.User;
 
-
 @Repository("userDao")
 public interface UserDao {
 	//登录

@@ -2,22 +2,37 @@ package flower.fruit.shop.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+
+
+
 import flower.fruit.shop.dao.UserDao;
+import flower.fruit.shop.domain.ConsultVO;
 import flower.fruit.shop.domain.Page;
 import flower.fruit.shop.domain.User;
+
+
 
 @Controller
 public class UserController{
@@ -130,8 +145,6 @@ public class UserController{
 				user.setUserId(userId);
 				User userResult = userDao.getUserInfo(user);
 				session.setAttribute("user", userResult);
-				session.setAttribute("userName", userResult.getUserName());
-				session.setAttribute("userId", userResult.getUserId());
 				return "AdminUserEdit";
 			}else{
 				request.setAttribute("msg", "登录超时!");
@@ -152,6 +165,31 @@ public class UserController{
 				User user = new User();
 				user.setUserId(userId);
 				userDao.deleteUser(user);;
+				return "success";
+			}else{
+				return "error";
+			}
+		}
+		@RequestMapping(value="/addUser", method = RequestMethod.POST)
+		public @ResponseBody String addUser(HttpServletRequest request,HttpServletResponse response,User user){
+			if(user != null){
+				User uCons = new User();
+				uCons.setUserName(user.getUserName());
+				uCons.setUserId(user.getUserId());
+				if(userDao.getUserCheck(uCons) >= 1){
+					return "warn";
+				}else{
+					//设置id
+					String userIdStr = UUID.randomUUID().toString();
+					user.setUserId(userIdStr);
+					//默认未禁用
+					user.setIsDelete("0");
+					//设置当前注册时间
+					Date date = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					user.setUserDate(sdf.format(date));
+					userDao.addUser(user);
+				}
 				return "success";
 			}else{
 				return "error";
