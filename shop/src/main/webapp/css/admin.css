@@ -1,0 +1,135 @@
+body {
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #f3f3f4;
+    font-size: 14px;
+    color: #676a6c;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+a{
+    color: #333;
+    text-decoration: none;
+}
+input{
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.title{
+    height: 60px;
+    line-height: 60px;
+    background: #fff;
+    padding: 0 20px;
+}
+.title a{
+    display: inline-block;
+    padding-left: 30px;
+    color: #333;
+    font-size: 16px;
+}
+.title a:hover, .title a.active{
+    color: #eb0f00;
+}
+.table{
+    padding-top: 30px;
+    margin: auto;
+    width: 1028px;
+}
+.table .edit{
+    color: #fff;
+    background: #eb0f00;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.table table.tb input{
+    text-align: center;
+}
+.table table.tb input::-webkit-input-placeholder{
+    text-align: center;
+}
+.table table.tb input:-moz-placeholder{
+    text-align: center;
+}
+.table table.tb input::-moz-placeholder{
+    text-align: center;
+}
+.table table.tb input:-ms-input-placeholder{
+    text-align: center;
+}
+.table table{
+    background: #fff;
+    margin: auto;
+    width: 1026px;
+    border-right: 1px solid #e9e9e9;
+    border-top: 1px solid #e9e9e9;
+    box-shadow: 0 2px 4px #ccc;
+}
+.table table a:hover{
+    color: #eb0f00
+}
+.table table th, .table table td{
+    line-height: 38px;
+    border-left: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    text-align: center;
+}
+.table table tbody tr:nth-child(2n+1){
+    background: #f9f9f9;
+}
+
+/* 编辑 */
+.table>p{
+    font-size: 16px;
+}
+.table .tbEdit tr td{
+    text-align: left;
+    padding-left: 20px;
+    background: #f9f9f9;
+}
+.table .tbEdit tr td:first-child{
+    text-align: center;
+    background: #fff;
+    padding: 0;
+}
+.table .tbEdit input, .table .tdEdit textarea{
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #e9e9e9;
+    padding: 0 10px;
+    background: #fff;
+    width: 200px;
+    margin: 10px 0;
+}
+.table .tdEdit textarea{
+    min-height: 200px;
+}
+.table .tdEdit textarea:focus,
+.table .tbEdit input:focus{
+    border: 1px solid #eb0f00;
+}
+.table .tbEdit input.fileinput{
+    background: transparent;
+    border: none;
+}
+.table .tbEdit .uploadTs{
+    color: #eb0f00;
+}
+.table .tbEdit .img{
+    float: left;
+    width: 40%;
+    margin-bottom: 20px;
+    margin-right: 5%;
+}
+.table .tbEdit .img img{
+    width: 100%;
+}
