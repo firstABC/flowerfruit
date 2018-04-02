@@ -101,7 +101,7 @@ input{
     background: #fff;
     padding: 0;
 }
-.table .tbEdit input, .table .tdEdit textarea{
+.table .tbEdit input, .table .tbEdit textarea, .table .tbEdit select{
     height: 28px;
     line-height: 28px;
     border: 1px solid #e9e9e9;
@@ -110,10 +110,11 @@ input{
     width: 200px;
     margin: 10px 0;
 }
-.table .tdEdit textarea{
+.table .tbEdit textarea{
     min-height: 200px;
+    width: 400px;
 }
-.table .tdEdit textarea:focus,
+.table .tbEdit textarea:focus,
 .table .tbEdit input:focus{
     border: 1px solid #eb0f00;
 }

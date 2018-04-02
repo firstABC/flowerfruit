@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="flower.fruit.shop.dao.UserAddressDao">
+	<resultMap id="addressMap" type="UserAddress" >
+		<id property="ua_id" column="ua_id"/>
+		<result property="userId" column="userId"/>
+		<result property="ua_name" column="ua_name"/>
+		<result property="ua_mobile" column="ua_mobile"/>
+		<result property="ua_province" column="ua_province"/>
+		<result property="ua_detal" column="ua_detal"/>
+	</resultMap>
+	
+	<insert id="addAdress" parameterType="UserAddress">
+		insert into userAddress(ua_id,userId,ua_name,ua_mobile,ua_province,ua_detal)
+				values(#{ua_id},#{userId},#{ua_name},#{ua_mobile},#{ua_province},#{ua_detal})
+	</insert>
+</mapper>

@@ -85,18 +85,19 @@
 				</div>
 				<!-- 新建配送地址 -->
 				<div class="protocol-warp formAddress" style="display: none;">
+				<form action="" id="form1" name="form1">
 					<div class="form-list">
 						<h2>新建配送地址</h2>
 						<div class="field">
 		                  	<label for="username"><em>*</em>收件人</label>
 		                  	<div class="input-box">
-		                    	<input type="text" name="name" value="南柯" title="" class="input-text">
+		                    	<input type="text" name="username" value="" title="" class="input-text">
 		                  	</div>
 		                </div>
 		                <div class="field">
 		                  	<label for="phone"><em>*</em>手机号</label>
 		                  	<div class="input-box">
-		                  		<input type="tel" name="" value="" placeholder="" class="input-text">
+		                  		<input type="tel" name="phone" value="" placeholder="" class="input-text">
 		                  	</div>
 		                </div>
 						<div class="field">
@@ -113,6 +114,7 @@
 						<!-- 提交 -->
 						<button type="button" title="提交" class="buttonTj"><span>提交</span></button>
 					</div> 
+					</form>
 				</div>
 			</div>
 			
