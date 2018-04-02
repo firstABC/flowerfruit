@@ -18,109 +18,63 @@
 
 	<div class="mainBody">
 		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<div class="myInfoTi">
-						柯志慧
-						<div class="myInfo" style="display: none;">
-							<ul>
-								<li><a href="myInfo.html" title="">基本信息</a></li>
-								<li><a href="myMenu.html" title="">我的订单</a></li>
-								<li><a href="myAddress.html" title="">配送地址</a></li>
-								<li><a href="productComment.html" title="">商品评价</a></li>
-							</ul>
-						</div>
-					</div>
-					
-					<a href="javascript:;">退出</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		            <div class="cart">
-		            	<a href="viewCart.html"><span>14</span></a> 
-		            </div>
-				</div>
-			</div>
+			<jsp:include page="header.jsp" flush="true"/>
 		</header><!-- /header -->
-
+		
 		<div class="main">
 			<div class="topmenu-user clearfix">
 				<ul>
-					<li class="active"><a href="myInfo.html" title="">基本信息</a></li>
+					<li class="active"><a href="${pageContext.request.contextPath}/getUserInfoById?userId=${userId}" title="">基本信息</a></li>
 					<li><a href="myMenu.html" title="">我的订单</a></li>
 					<li><a href="myAddress.html" title="">配送地址</a></li>
-					<li><a href="productComment.html" title="">商品评价</a></li>
+					<li><a href="productComment.jsp" title="">商品评价</a></li>
 				</ul>
 			</div>
-
+			
 			<div class="userCont">
 				<!-- 基本信息 -->
 				<div class="infoBase">
 					<h2>基本信息</h2>
 				</div>
+				
 				<div class="form-list">
+					<input type="text" name="userId" value="${sessionScope.user.userId }" hidden="hidden" class="focus">
 					<div class="field">
 	                  	<label for="username"><em>*</em>姓名</label>
 	                  	<div class="input-box">
-	                    	<input type="text" name="name" value="南柯" title="" class="input-text">
+	                    	<input type="text" name="userName" value="${sessionScope.user.userName}" title="" class="input-text">
 	                  	</div>
 	                </div>
 	                <div class="field">
 	                  	<label for="phone"><em>*</em>手机号</label>
 	                  	<div class="input-box">
-	                  		<input type="tel" name="" value="" placeholder="" class="input-text">
+	                  		<input type="tel" name="userPhone" value="${sessionScope.user.userPhone}" placeholder="" class="input-text">
 	                  	</div>
-	                </div>
-	                <div class="field">
-	                  	<label for="birthday">生日</label>
-	                  	<div class="input-box">
-	                    	<input type="date" name="birthday" value="" title="" class="input-text">
-	                  	</div>
-	                </div>
-	                <div class="field">
-	                  	<label><em>*</em>省份</label>
-	                  	<div class="input-box pick-area"></div>
 	                </div>
 	                <div class="field">
 	                  	<label for="address"><em>*</em>详细地址</label>
 	                  	<div class="input-box">
-	                    	<input type="text" name="address" value="" title="" class="input-text">
+	                    	<input type="text" name="userAddress" value="${sessionScope.user.userAddress}" title="" class="input-text">
 	                  	</div>
 	                </div>
 	                <div class="field">
-	                  	<label for="passwordNow"><em>*</em>当前密码</label>
+	                  	<label for="passwordNew"><em>*</em>密码</label>
 	                  	<div class="input-box">
-	                    	<input type="password" name="passwordNow" value="" title="" class="input-text">
-	                  	</div>
-	                </div>
-	                <div class="field">
-	                  	<label for="passwordNew"><em>*</em>新的密码</label>
-	                  	<div class="input-box">
-	                    	<input type="password" name="passwordNew" value="" title="" class="input-text">
+	                    	<input type="password" name="userPwd" value="${sessionScope.user.userPwd}" title="" class="input-text" id="pwd">
 	                  	</div>
 	                </div>
 	                <div class="field">
 	                  	<label for="confirmation"><em>*</em>确认新的密码</label>
 	                  	<div class="input-box">
-	                    	<input type="password" name="confirmation" value="" title="" class="input-text">
+	                    	<input type="password" name="" value="" title="" class="input-text" id="pwdR">
 	                  	</div>
 	                </div>
 				</div> 
+				
 			</div>
-			
 			<!-- 提交 -->
-			<button type="button" title="提交" class="buttonTj"><span>提交</span></button>
+			<button type="button" title="提交" class="buttonTj" id="updateUser"><span>提交</span></button>
 		</div>
-
 		<footer>
 			<div class="footer-ul clearfix">
 		      <dl>
@@ -150,6 +104,29 @@
 
 
 	<script type="text/javascript">
+	var userId = $("#uId").val();
+		$("#updateUser").click(function(){
+			if($('#pwdR').val() != $('#pwd').val()){
+				alert("密码两次输入不一致!");
+			}else{
+				var params = $('#updateUserForm').serialize();;
+				var a = $.ajax({
+					url:'${pageContext.request.getContextPath()}/updateUser',
+		    		type :'post',
+		    		data:params, 
+		    		success:function(data){
+		    			if(data == 'success'){
+		    				alert("修改成功！");
+		    				window.location.href="${pageContext.request.getContextPath()}/getUserInfoById?userId="+userId;
+		    			}else if(data =='warn'){
+		    				alert("用户名重复！");
+		    			}else{
+		    				window.location.href="${pageContext.request.getContextPath()}/login.jsp";
+		    			}
+		    		}
+				});
+			}
+		});
 		$(function(){
 		    $('.login .myInfoTi').hover(function(){
 		    	$('.myInfo').fadeToggle();

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace需要映射的接口类  -->
+<mapper  namespace="flower.fruit.shop.dao.CommentDao">
+	<resultMap id="CommentMap" type="CommentVO" >
+		<id property="commentId" column="comment_id"/>
+		<result property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="goodsId" column="goods_id"/>
+		<result property="goodsName" column="goods_name"/>
+		<result property="commentMsg" column="comment_msg"/>
+		<result property="commentType" column="comment_type"/>
+		<result property="commentDate" column="comment_date"/>
+		<result property="isDelete" column="is_delete"/>
+	</resultMap>
+	
+	<!-- 查询评论 -->
+	<select id="getCommentList" parameterType="Page" resultMap="CommentMap">
+	select
+			 c.comment_id as comment_id,
+			 c.user_id as user_id,
+			 u.user_name as user_name,
+			 c.goods_id as goods_id,
+			 g.g_title as goods_name,
+			 c.comment_msg as comment_msg,
+			 c.comment_type as comment_type,
+			 c.comment_date as comment_date,
+			 c.is_delete as is_delete
+			from comment c, 
+					 userinfo u,
+					 goods g
+		  where
+			 c.user_id = u.user_id
+			 and c.goods_id = g.g_id
+			 and c.is_delete = '0'
+		   <if test="params.goodsId != null and params.goodsId != '' ">
+           		and g.g_id = #{params.goodsId}
+           </if>
+           <if test="params.userId != null and params.userId != '' ">
+           		and u.user_id = #{params.userId}
+           </if>
+	order by comment_date desc limit #{startIndex},#{length}
+	</select>
+	
+	<select id="getCommentCount" parameterType="Page" resultType="int">
+	select ifnull(count(1),0) from
+	(
+		select
+			 c.comment_id as comment_id,
+			 c.user_id as user_id,
+			 u.user_name as user_name,
+			 c.goods_id as goods_id,
+			 g.g_title as goods_name,
+			 c.comment_msg as comment_msg,
+			 c.comment_type as comment_type,
+			 c.comment_date as comment_date,
+			 c.is_delete as is_delete
+			from comment c, 
+					 userinfo u,
+					 goods g
+		  where
+			 c.user_id = u.user_id
+			 and c.goods_id = g.g_id
+			 and c.is_delete = '0'
+		   <if test="params.goodsId != null and params.goodsId != '' ">
+           		and g.g_id = #{params.goodsId}
+           </if>
+           <if test="params.userId != null and params.userId != '' ">
+           		and u.user_id = #{params.userId}
+           </if>
+	) as t
+	</select>
+ 	<!-- 用户新增评论 -->
+	<insert id="addComment" parameterType="CommentVO">
+		insert into comment(comment_id,user_id,comment_msg,comment_type,comment_date,is_delete,goods_id) 
+		values(#{commentId},#{userId},#{commentMsg},#{commentType},#{commentDate},#{isDelete},#{goodsId})
+	</insert>
+</mapper>

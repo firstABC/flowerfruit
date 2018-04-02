@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import flower.fruit.shop.dao.AdminDao;
-import flower.fruit.shop.domain.ConsultVO;
 import flower.fruit.shop.domain.Admin;
 
 

@@ -8,27 +8,27 @@
 		<id property="userId" column="user_id"/>
 		<result property="userName" column="user_name"/>
 		<result property="userPwd" column="user_pwd"/>
-		<result property="userEmail" column="user_email"/>
+		<result property="userAddress" column="user_address"/>
 		<result property="userPhone" column="user_phone"/>
 		<result property="userDate" column="user_date"/>
 		<result property="isDelete" column="is_delete"/>
 	</resultMap>
 	<!-- 登录用户查询-->
 	<select id="getLoginUser" parameterType="User" resultMap="UserMap">
-		select user_id, user_name, user_pwd, user_email, user_phone, user_date, is_delete
+		select user_id, user_name, user_pwd, user_address, user_phone, user_date, is_delete
 		from userinfo
          where user_name = #{userName}
          and user_pwd = #{userPwd}
          and is_delete = #{isDelete}
 	</select>
 	<insert id="addUser"  parameterType="User">
-		insert into userinfo(user_id, user_name, user_pwd, user_email, user_phone, user_date, is_delete) values
-		(#{userId}, #{userName}, #{userPwd}, #{userEmail}, #{userPhone}, #{userDate}, #{isDelete})
+		insert into userinfo(user_id, user_name, user_pwd, user_address, user_phone, user_date, is_delete) values
+		(#{userId}, #{userName}, #{userPwd}, #{userAddress}, #{userPhone}, #{userDate}, #{isDelete})
 	</insert>
 	
 	<!-- 多条件查询用户信息 -->
 	<select id="getUserInfo" parameterType="User" resultMap="UserMap">
-		select user_id,user_name,user_pwd,user_phone,user_email,user_date from userinfo where is_delete='0' 
+		select user_id,user_name,user_pwd,user_phone,user_address,user_date from userinfo where is_delete='0' 
 		<if test="userId != null and userId != '' ">
 			and user_id = #{userId}
 		</if>
@@ -38,8 +38,8 @@
 		<if test="userPhone != null and userPhone != '' ">
 			and user_phone = #{userPhone}
 		</if>
-		<if test="userEmail != null and userEmail != '' ">
-			and user_email = #{userEmail}
+		<if test="userAddress != null and userAddress != '' ">
+			and user_address = #{userAddress}
 		</if>
 	</select>
 	
@@ -47,7 +47,7 @@
 	<update id="updateUser" parameterType="User">
 		update userinfo set 
 		user_name = #{userName}, user_pwd = #{userPwd},
-		user_email = #{userEmail}, user_phone = #{userPhone},user_date = #{userDate}
+		user_address = #{userAddress}, user_phone = #{userPhone},user_date = #{userDate}
 		where user_id = #{userId}
 	</update>
 	<!-- 修改信息查重 -->
@@ -64,7 +64,7 @@
 	</select>
 	<!-- 分页查询所有用户 -->
 	<select id="getAllUser" parameterType="Page" resultMap="UserMap">
-		select user_id,user_name,user_pwd,user_phone,user_email,user_date,is_delete from userinfo 
+		select user_id,user_name,user_pwd,user_phone,user_address,user_date,is_delete from userinfo 
 		where is_delete = '0' order by user_date desc
 		<!-- limit #{startIndex},#{length} -->
 	</select>

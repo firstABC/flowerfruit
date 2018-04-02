@@ -18,26 +18,7 @@
 
 	<div class="mainBody">
 		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<a href="login.html">登录</a>
-					<a href="register.html">注册</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		             <div class="cart">
-		            	<a href="viewCart.html"></a> 
-		            </div>
-				</div>
+			<jsp:include page="header.jsp" flush="true"/>
 			</div>
 			<div class="show_table">
 				<div class="topmenu clearfix">
@@ -72,37 +53,38 @@
 		</header><!-- /header -->
 
 		<div class="main">
+		<form  method="post" action="register" onSubmit="return checkForm()">
 			<div class="account-login">
 				<div class="u-container">
-					<h1 class="m-login-til">注册 <span>已经是会员？<a href="login.html">立即登录</a></span></h1>
+					<h1 class="m-login-til">注册 <span>已经是会员？<a href="login.jsp">立即登录</a></span></h1>
 					<div class="m-login">
 						<div class="m-form-group">
-		                    <input type="text" name="" placeholder="姓名">
+		                    <input type="text" name="userName" placeholder="姓名">
 		                </div>
 		                <div class="m-form-group">
-		                    <input type="password" name="" placeholder="密码">
+		                     <input type="text" name="userPhone" placeholder="手机号">
 		                </div>
 		                <div class="m-form-group">
-		                    <input type="password" name="" placeholder="确认密码">
+		                    <input type="text" name="userAddress" placeholder="地址">
+		                </div>
+		               
+		                <div class="m-form-group">
+		                    <input type="password" name="userPwd" placeholder="密码" id="pwd">
 		                </div>
 		                <div class="m-form-group">
-		                    <input type="text" class="phone-area J_Must" name="area" value="+86" placeholder="国际区号">
-		                    <input type="text" class="phone-number J_Must" name="mobile" placeholder="手机号">
-		                    <samp id="sendcode"><button type="button" class="m-btn half-sub " value="">获取验证码</button>
-		                </div>
-		                <div class="m-form-group">
-		                    <input type="text" placeholder="短信验证码" name="mcode">
+		                    <input type="password" name="" placeholder="确认密码" id="pwdR">
 		                </div>
 		                <div class="m-form-group">
 		                    <input type="checkbox">&nbsp;我已阅读和同意 <a href="javascript:;" class="server">《水果鲜花服务条款》</a>
 		                </div>
 		                <p class="u-err-tips"></p>
 		                <div class="m-form-group">
-		                    <button type="button" class="m-btn-primary">注册</button>
+		                    <input type="submit" class="m-btn-primary" value="注册">
 		                </div>
 		            </div>
 				</div>
 			</div>
+		</form>
 		</div>
 
 		<footer>
@@ -156,6 +138,12 @@
 		    	$('.protocol-warp').hide();
 		    })
 		})
+		function checkForm(){
+			if($('#pwdR').val() != $('#pwd').val()){
+				alert("密码两次输入不一致!");
+				return false;
+			}
+		}
 	</script>
 
 </body>

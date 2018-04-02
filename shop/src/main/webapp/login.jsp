@@ -18,27 +18,7 @@
 
 	<div class="mainBody">
 		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<a href="login.html">登录</a>
-					<a href="register.html">注册</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		             <div class="cart">
-		            	<a href="viewCart.html"></a> 
-		            </div>
-				</div>
-			</div>
+			<jsp:include page="header.jsp" flush="true"/>
 			<div class="show_table">
 				<div class="topmenu clearfix">
 					<ul>
@@ -72,26 +52,30 @@
 		</header><!-- /header -->
 
 		<div class="main">
+			<form id="form_login" name="form_login" method="get" action="login">
 			<div class="account-login">
 				<div class="u-container">
 					<h1 class="m-login-til">欢迎回来 <span>还不是会员？<a href="register.html">立即注册</a></span></h1>
-					<div class="m-login">
-		                <div class="m-form-group">
-		                    <input type="text" name="" placeholder="手机号/邮箱">
-		                </div>
-		                <div class="m-form-group">
-		                    <input type="password" name="" placeholder="密码">
-		                </div>
-		                <p class="u-err-tips"></p>
-		                <div class="m-form-group">
-		                    <button type="button" class="m-btn-primary">登录</button>
-		                </div>
-		                <div class="login-bottom ">
-		                    <a href="forgetpwd.html" class="forget">忘记密码?</a>
-		                </div>
-		            </div>
+					<form id="form_login" name="form_login" method="get" action="login">
+						<div class="m-login">
+			                <div class="m-form-group">
+			                    <input type="text" name="userName" id="userName" value="" placeholder="用户名">
+			                </div>
+			                <div class="m-form-group">
+			                    <input type="password" name="userPwd" id="userPwd" value="" placeholder="密码">
+			                </div>
+			                <p class="u-err-tips"></p>
+			                <div class="m-form-group">
+			                    <input type="submit" class="m-btn-primary" value="登录">
+			                </div>
+			                <div class="login-bottom ">
+			                    <a href="forgetpwd.html" class="forget">忘记密码?</a>
+			                </div>
+			            </div>
+		            </form>
 				</div>
 			</div>
+			</form>
 		</div>
 
 		<footer>

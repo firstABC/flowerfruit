@@ -28,7 +28,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import flower.fruit.shop.dao.UserDao;
-import flower.fruit.shop.domain.ConsultVO;
 import flower.fruit.shop.domain.Page;
 import flower.fruit.shop.domain.User;
 
@@ -55,7 +54,8 @@ public class UserController{
 			if(loginUser != null){
 				 session.setAttribute("userId", loginUser.getUserId());
 				 session.setAttribute("userName", userName);
-			     return "forward:/switch/toIdex";
+			     //return "forward:/switch/toIdex";
+				 return "index";
 			}
 			else{
 				request.setAttribute("msg", "登录失败");
@@ -66,7 +66,8 @@ public class UserController{
 		public String out(HttpServletRequest request) throws Exception{
 			HttpSession session = request.getSession();
 			session.invalidate();
-			return "forward:/switch/toIdex";
+			//return "forward:/switch/toIdex";
+			return "index";
 		}
 		@RequestMapping("/register")
 		public String register(HttpServletRequest request,HttpServletResponse response,User user){
@@ -91,7 +92,8 @@ public class UserController{
 					userDao.addUser(user);
 					session.setAttribute("userName", user.getUserName());
 					session.setAttribute("userId", user.getUserId());
-					return "forward:/switch/toIdex";
+					//return "forward:/switch/toIdex";
+					return "index";
 				}
 			}else{
 				request.setAttribute("msg", "注册失败!");
@@ -110,7 +112,7 @@ public class UserController{
 				session.setAttribute("user", userResult);
 				session.setAttribute("userName", userResult.getUserName());
 				session.setAttribute("userId", userResult.getUserId());
-				return "info";
+				return "myInfo";
 			}else{
 				request.setAttribute("msg", "登录超时!");
 				return "login";

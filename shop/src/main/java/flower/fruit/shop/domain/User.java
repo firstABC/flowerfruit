@@ -5,7 +5,7 @@ public class User {
 	private String userId;		//用户ID
 	private String userName;	//账号
 	private String userPwd;		//用户密码
-	private String userEmail;	//用户邮箱
+	private String userAddress;	//用户邮箱
 	private String userPhone;	//用户电话
 	private String  userDate;	//注册时间
 	private String isDelete;	//是否删除
@@ -39,11 +39,11 @@ public class User {
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
-	public String getUserEmail() {
-		return userEmail;
+	public String getUserAddress() {
+		return userAddress;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
 	}
 	public String getUserPhone() {
 		return userPhone;
