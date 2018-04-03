@@ -14,7 +14,6 @@ Date: 2018-04-03 11:43:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
 -- ----------------------------
 -- Table structure for admin
 -- ----------------------------
