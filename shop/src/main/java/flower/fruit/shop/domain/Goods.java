@@ -7,15 +7,25 @@ public class Goods {
 	private String g_id;
 	private String g_title;
 	private String g_detal;
+	private String g_price;
+	//规格参数
 	private String g_parameter;
+	//推荐理由
 	private String g_recommend;
 	//浏览量
 	private int g_view;
+	//状态：新品上架 0  推荐 1
 	private int g_status;
 	private List<Images> ltMage;
 	
 	
 	
+	public String getG_price() {
+		return g_price;
+	}
+	public void setG_price(String g_price) {
+		this.g_price = g_price;
+	}
 	public int getG_status() {
 		return g_status;
 	}

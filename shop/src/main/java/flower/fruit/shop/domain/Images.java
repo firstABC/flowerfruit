@@ -1,28 +1,34 @@
 package flower.fruit.shop.domain;
+import java.sql.Blob;
 
 public class Images {
-
-	private String i_id;
+	private String im_id;
+	//地址
+	private String pathName;
+	//商品id
 	private String g_id;
-	private String i_path;
-	public String getI_id() {
-		return i_id;
+	
+	public String getIm_id() {
+		return im_id;
 	}
-	public void setI_id(String i_id) {
-		this.i_id = i_id;
+	public void setIm_id(String im_id) {
+		this.im_id = im_id;
 	}
+	public String getPathName() {
+		return pathName;
+	}
+	public void setPathName(String pathName) {
+		this.pathName = pathName;
+	}
+	
 	public String getG_id() {
 		return g_id;
 	}
 	public void setG_id(String g_id) {
 		this.g_id = g_id;
 	}
-	public String getI_path() {
-		return i_path;
-	}
-	public void setI_path(String i_path) {
-		this.i_path = i_path;
-	}
+	
+	
 	
 	
 }

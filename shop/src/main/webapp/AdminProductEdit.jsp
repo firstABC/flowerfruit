@@ -6,8 +6,32 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>商品管理</title>
-	<link href="css/admin.css" rel="stylesheet">
-    <script src="js/jquery-1.10.1.min.js"></script>
+	<link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet">
+	 <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
+   <script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
+     <script type="text/javascript">
+	  	function toPublishAdd(){
+	    	var option = {
+	    		url:'${pageContext.request.getContextPath()}/goods/toPublish',
+	    		type :"post",
+	    		dataType:'json',
+	    		headers:{"ClientCallMode" : "ajax"}, 
+	    		success : function(data) {
+	    			if(data.message == 'error'){
+						alert("发布失败！");
+					}else{
+						alert("发布成功！");
+						window.location.href="${pageContext.request.getContextPath()}/index.jsp";
+					}
+	            },
+	            error: function(data) {
+	                alert(JSON.stringify(data) + "--上传失败,请刷新后重试");
+	            }
+	         };
+	   	 	$("#publish_form").ajaxSubmit(option);
+	   	 	return false;
+	  	}
+  	</script>
     
 </head>
 <body>
@@ -20,58 +44,78 @@
 		</div>
 		<div class="table">
 			<p>编辑商品</p>
-			<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
-    			<tr>
-    				<td width="100">商品名</td>
-    				<td><input type="text" name="" value=""></td>
-    			</tr>
-    			<tr>
-    				<td width="100">价格</td>
-    				<td><input type="number" name="" value="" placeholder=""></td>
-    			</tr>
-    			<tr>
-    				<td width="100">时间</td>
-    				<td><input type="date" name="" value=""></td>
-    			</tr>
-    			<tr>
-    				<td width="100">上传商品图</td>
-    				<td>
-    					<p class="uploadTs">最多可上传4张图片</p>
-    					<div class="images">
-	    					<div class="img">
-					             <div class="addhao">
-					                 <input type="file" name="" class="fileinput">
-					             </div>
-					             <div class="on"></div>
-					         </div>
-					         <div class="img">
-					             <div class="addhao">
-					                 <input type="file" name="" class="fileinput">
-					             </div>
-					             <div class="on"></div>
-					         </div>
-					         <div class="img">
-					             <div class="addhao">
-					                 <input type="file" name="" class="fileinput">
-					             </div>
-					             <div class="on"></div>
-					         </div>
-					         <div class="img">
-					             <div class="addhao">
-					                 <input type="file" name="" class="fileinput">
-					             </div>
-					             <div class="on"></div>
-					         </div>
-					    </div>
-					</td>
-    			</tr>
-    			<tr>
-    				<td></td>
-		            <td style="padding-top: 20px;">
-		             	<a href="javascript:;" class="edit">编辑</a> 
-		            </td>
-	            </tr>
-    		</table>
+			<form method="post" enctype="multipart/form-data" id="publish_form" name="publish_form">
+				<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
+	    			<tr>
+	    				<td width="100">商品名</td>
+	    				<td><input type="text" name="g_title" value=""></td>
+	    			</tr>
+	    			<tr>
+	    				<td width="100">价格</td>
+	    				<td><input type="number" name="g_price" value="" placeholder=""></td>
+	    			</tr>
+	    			<tr>
+	    				<td width="100">状态</td>
+	    				<td>
+	    					<select name="g_status">
+	    						<option value="1"> 推荐 </option>
+	    						<option value="2"> 普通 </option>
+	    						<option value="3">新品上架</option>
+	    					</select>
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td width="100">上传商品图</td>
+	    				<td>
+	    					<p class="uploadTs">最多可上传4张图片</p>
+	    					<div class="images">
+		    					<div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						         <div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						         <div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						         <div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						    </div>
+						</td>
+	    			</tr>
+	    			<tr>
+	    				<td width="100">规格说明</td>
+	    				<td>
+	    					<textarea name="g_parameter"></textarea>
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td width="100">推荐理由</td>
+	    				<td>
+	    					<textarea name="g_recommend"></textarea>
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td></td>
+			            <td style="padding-top: 20px;">
+			             	<a href="javascript:toPublishAdd();" class="edit">发布</a> 
+			            </td>
+		            </tr>
+	    		</table>
+    		</form>
 		</div>
 	</div>
 
