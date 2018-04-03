@@ -105,7 +105,6 @@
 		</footer>
 	</div>
 
-
 	<script type="text/javascript">
 		$(function(){
 		    $('.topmenu li').click(function(){
