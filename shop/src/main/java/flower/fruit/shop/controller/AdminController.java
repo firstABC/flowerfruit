@@ -3,6 +3,7 @@ package flower.fruit.shop.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import flower.fruit.shop.dao.AdminDao;
 import flower.fruit.shop.domain.Admin;
+import flower.fruit.shop.domain.User;
 
 
 
@@ -49,17 +51,47 @@ public class AdminController{
 				 model.addAttribute("loginAdmin", loginAdmin); 
 				 session.setAttribute("adminId", loginAdmin.getAdminId());
 				 session.setAttribute("adminName", adminName);
-			     return "AdminProduct";
+			     return "AdminUser";
 			}
 			else{
 				request.setAttribute("msg", "登录失败");
-				return "loginAdmin";
+				return "AdminLogin";
 			}
 		}
 		@RequestMapping(value = "/outAdmin", method = RequestMethod.GET)
 		public String out(HttpServletRequest request) throws Exception{
 			HttpSession session = request.getSession();
 			session.invalidate();
-			return "loginAdmin";
+			return "AdminLogin";
+		}
+		@RequestMapping("/registerAdmin")
+		public String register(HttpServletRequest request,HttpServletResponse response,Admin admin){
+			HttpSession session = request.getSession();
+			if(admin != null){
+				//设置id
+				String adminIdStr = UUID.randomUUID().toString();
+				admin.setAdminId(adminIdStr);
+				//默认未禁用
+				admin.setIsDelete("0");
+				//设置当前注册时间
+//				Date date = new Date();
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//				admin.setAdminDate(sdf.format(date));
+				Admin aCons = new Admin();
+				aCons.setAdminName(admin.getAdminName());
+				if(adminDao.getAdminCheck(aCons) >= 1){
+					request.setAttribute("msg", "用户名重复!");
+					session.setAttribute("admin", admin);
+					return "AdminRegister";
+				}else{
+					adminDao.addAdmin(admin);
+					session.setAttribute("adminName", admin.getAdminName());
+					session.setAttribute("adminId", admin.getAdminId());
+					return "AdminUser";
+				}
+			}else{
+				request.setAttribute("msg", "注册失败!");
+				return "AdminRegister";
+			}
 		}
 }

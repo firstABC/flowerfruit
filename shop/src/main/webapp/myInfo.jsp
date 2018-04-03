@@ -106,7 +106,12 @@
 	<script type="text/javascript">
 	var userId = $("#uId").val();
 		$("#updateUser").click(function(){
-			if($('#pwdR').val() != $('#pwd').val()){
+			if($('#name').val() == null || $('#name').val() == ""){
+				alert("用户名不能为空!");
+			}else if($('#pwd').val() ==null ||$('#pwd').val() == ""){
+				alert("密码不能为空!");
+				return false;
+			}else if($('#pwdR').val() != $('#pwd').val()){
 				alert("密码两次输入不一致!");
 			}else{
 				var params = $('#updateUserForm').serialize();;

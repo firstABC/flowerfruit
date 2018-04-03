@@ -69,7 +69,7 @@
 			                    <input type="submit" class="m-btn-primary" value="登录">
 			                </div>
 			                <div class="login-bottom ">
-			                    <a href="forgetpwd.jsp" class="forget">忘记密码?</a>
+			                    <a href="#" class="forget">忘记密码?</a>
 			                </div>
 			            </div>
 		            </form>

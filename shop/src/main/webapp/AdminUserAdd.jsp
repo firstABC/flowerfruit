@@ -21,25 +21,24 @@
 			<a href="AdminOrder.html" title="">订单管理</a>
 		</div>
 		<div class="table">
-			<p>编辑用户信息</p>
+			<p>新增用户信息</p>
 			<form action="" method="post" id="updateUserForm2">
 			<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
-			<input type="text" name="userId" value="${sessionScope.user.userId }" hidden="hidden">
     			<tr>
     				<td width="100">用户名</td>
-    				<td><input type="text" name="userName" value="${sessionScope.user.userName}" id="name"></td>
+    				<td><input type="text" name="userName" value="" id="name"></td>
     			</tr>
     			<tr>
     				<td width="100">手机号</td>
-    				<td><input type="tel" name="userPhone" value="${sessionScope.user.userPhone}" placeholder=""></td>
+    				<td><input type="tel" name="userPhone" value="" placeholder=""></td>
     			</tr>
     			<tr>
     				<td width="100">详细地址</td>
-    				<td><input type="tel" name="userAddress" value="${sessionScope.user.userAddress}" placeholder=""></td>
+    				<td><input type="tel" name="userAddress" value="" placeholder=""></td>
     			</tr>
     			<tr>
     				<td width="100">密码</td>
-    				<td><input type="password" name="userPwd" value="${sessionScope.user.userPwd}" placeholder="" id="pwd"></td>
+    				<td><input type="password" name="userPwd" value="" placeholder="" id="pwd"></td>
     			</tr>
     			<tr>
     				<td width="100">确认密码</td>
@@ -48,7 +47,7 @@
     			<tr>
     				<td></td>
 		            <td style="padding-top: 20px;">
-		             	<a href="javascript:updateUser()" class="edit">编辑</a> 
+		             	<a href="javascript:updateUser()" class="edit">新增</a> 
 		            </td>
 	            </tr>
     		</table>
@@ -67,12 +66,12 @@
 		}else{
 			var params = $('#updateUserForm2').serialize();;
 			var a = $.ajax({
-				url:'${pageContext.request.getContextPath()}/updateUser',
+				url:'${pageContext.request.getContextPath()}/addUser',
 	    		type :'post',
 	    		data:params, 
 	    		success:function(data){
 	    			if(data == 'success'){
-	    				alert("修改成功！");
+	    				alert("新增成功！");
 	    				window.location.href="${pageContext.request.getContextPath()}/AdminUser.jsp";
 	    			}else if(data =='warn'){
 	    				alert("用户名重复！");

@@ -59,7 +59,7 @@
 					<h1 class="m-login-til">注册 <span>已经是会员？<a href="login.jsp">立即登录</a></span></h1>
 					<div class="m-login">
 						<div class="m-form-group">
-		                    <input type="text" name="userName" placeholder="姓名">
+		                    <input type="text" name="userName" placeholder="姓名" id="name">
 		                </div>
 		                <div class="m-form-group">
 		                     <input type="text" name="userPhone" placeholder="手机号">
@@ -123,7 +123,7 @@
 		</div>
 	</div>
 
-
+	<span id="msg" style="display:none">${msg}</span>
 	<script type="text/javascript">
 		$(function(){
 		    $('.topmenu li').click(function(){
@@ -138,7 +138,20 @@
 		    	$('.protocol-warp').hide();
 		    })
 		})
+		var cont=$("#msg").text();
+		if(cont != null&&cont != ""){
+			console.log(cont);
+			alert(cont);
+		}
 		function checkForm(){
+			if($('#name').val() == null || $('#name').val() == ""){
+				alert("用户名不能为空!");
+				return false;
+			}
+			if($('#pwd').val() ==null ||$('#pwd').val() == ""){
+				alert("密码不能为空!");
+				return false;
+			}
 			if($('#pwdR').val() != $('#pwd').val()){
 				alert("密码两次输入不一致!");
 				return false;

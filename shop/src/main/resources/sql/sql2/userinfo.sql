@@ -10,10 +10,11 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-04-03 09:34:15
+Date: 2018-04-03 11:44:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
 -- ----------------------------
 -- Table structure for userinfo
 -- ----------------------------
@@ -32,6 +33,7 @@ CREATE TABLE `userinfo` (
 -- ----------------------------
 -- Records of userinfo
 -- ----------------------------
-INSERT INTO `userinfo` VALUES ('1ce00f8e-89c2-4732-aa2c-a16a90c55561', 'regis', '4321', '111111111', '123@163.com', '2018-03-10 13:04:02', '0');
+INSERT INTO `userinfo` VALUES ('1ce00f8e-89c2-4732-aa2c-a16a90c55561', 'regis', '4321', '111111111', '123@163.com', '2018-03-10 13:04:02', '1');
 INSERT INTO `userinfo` VALUES ('4124d1ab-277c-468a-bca7-09d9b9676a66', 'aaabc', '1111', '111114', '2222222@qq.com', '2018-04-02 14:30:12', '0');
 INSERT INTO `userinfo` VALUES ('6c4baa7e-e731-4ce7-bb99-2907a08cf9ea', 'test', '333', '1111111', '顺风顺水', '2018-04-02 14:42:07', '0');
+INSERT INTO `userinfo` VALUES ('ad1615ef-3901-4875-b77a-e26cf8a93d95', 'tt', '11', '44', 'gsd', '2018-04-03 11:41:04', '0');

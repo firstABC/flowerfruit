@@ -18,4 +18,18 @@
          	and admin_pwd = #{adminPwd}
          	and is_delete = #{isDelete}
 	</select>
+	<!-- 管理员注册 -->
+	<insert id="addAdmin"  parameterType="Admin">
+		insert into admin(admin_id, admin_name, admin_pwd,is_delete) values
+		(#{adminId}, #{adminName}, #{adminPwd}, #{isDelete})
+	</insert>
+	
+	<!-- 注册修改检查重复用户名 -->
+	<select id="getAdminCheck" parameterType="Admin" resultType="int">
+		select ifnull(count(1),0) from admin where is_delete = '0'
+			and admin_name = #{adminName}
+			<if test="adminId != null and adminId != '' ">
+			and admin_id != #{adminId}
+			</if>
+	</select>
 </mapper>
