@@ -23,25 +23,25 @@
 				<div class="topmenu clearfix">
 					<ul>
 						<li>
-							<a href="index.html" class="til">
+							<a href="index.jsp" class="til">
 								<h3>Home</h3>
 								<h4>首页</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#popular" class="til">
+							<a href="index.jsp#popular" class="til">
 								<h3>Hot recommend</h3>
 								<h4>热门推荐</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#freshUp" class="til">
+							<a href="index.jsp#freshUp" class="til">
 								<h3>What's new</h3>
 								<h4>新鲜上架</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#diy" class="til">
+							<a href="index.jsp#diy" class="til">
 								<h3>Do it youself</h3>
 								<h4>自己搭配</h4>
 							</a>
@@ -55,7 +55,7 @@
 			<form id="form_login" name="form_login" method="get" action="login">
 			<div class="account-login">
 				<div class="u-container">
-					<h1 class="m-login-til">欢迎回来 <span>还不是会员？<a href="register.html">立即注册</a></span></h1>
+					<h1 class="m-login-til">欢迎回来 <span>还不是会员？<a href="register.jsp">立即注册</a></span></h1>
 					<form id="form_login" name="form_login" method="get" action="login">
 						<div class="m-login">
 			                <div class="m-form-group">
@@ -69,7 +69,7 @@
 			                    <input type="submit" class="m-btn-primary" value="登录">
 			                </div>
 			                <div class="login-bottom ">
-			                    <a href="forgetpwd.html" class="forget">忘记密码?</a>
+			                    <a href="forgetpwd.jsp" class="forget">忘记密码?</a>
 			                </div>
 			            </div>
 		            </form>
@@ -82,10 +82,10 @@
 			<div class="footer-ul clearfix">
 		      <dl>
 			      <dt>配送方式</dt>
-			      <dd><a href="delivery.html">配送时间</a></dd>
-			      <dd><a href="delivery.html">配送范围</a></dd>
-			      <dd><a href="delivery.html">配送收费标准</a></dd>
-			      <dd><a href="delivery.html">快递查询</a></dd>
+			      <dd><a href="delivery.jsp">配送时间</a></dd>
+			      <dd><a href="delivery.jsp">配送范围</a></dd>
+			      <dd><a href="delivery.jsp">配送收费标准</a></dd>
+			      <dd><a href="delivery.jsp">快递查询</a></dd>
 		      </dl>
 		      <dl>
 			      <dt>支付方式</dt>

@@ -28,8 +28,8 @@
 					<div class="myInfo" style="display: none;">
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/getUserInfoById?userId=${userId}" title="">基本信息</a></li>
-							<li><a href="myMenu.html" title="">我的订单</a></li>
-							<li><a href="myAddress.html" title="">配送地址</a></li>
+							<li><a href="myMenu.jsp" title="">我的订单</a></li>
+							<li><a href="myAddress.jsp" title="">配送地址</a></li>
 							<li><a href="productComment.jsp" title="">商品评价</a></li>
 						</ul>
 					</div>
@@ -48,7 +48,7 @@
 	                </form>
 	            </div>
 	            <div class="cart">
-	            	<a href="viewCart.html"><span>14</span></a> 
+	            	<a href="viewCart.jsp"><span>14</span></a> 
 	            </div>
 			</div>
 	</div>
