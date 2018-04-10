@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="flower.fruit.shop.domain.GoodsSingle" %>
+<%@ page import="flower.fruit.shop.domain.Goods" %>
+<%@ page import="flower.fruit.shop.domain.Images" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,19 +11,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>水果鲜花</title>
 
-	<link rel="stylesheet" type="text/css" href="css/swiper.min.css">
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
 
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
-	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
 </head>
 <body>
 
 	<div class="mainBody">
 		<header>
-			<jsp:include page="header.jsp" flush="true"/>
+			<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
 			<div class="show_table">
 				<div class="topmenu clearfix">
 					<ul>
@@ -56,8 +60,8 @@
 			<!-- 轮播图 -->
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"><img src="images/banner1.jpg" alt=""></div>  
-					<div class="swiper-slide"><img src="images/banner2.jpg" alt=""></div>  
+					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/images/banner1.jpg" alt=""></div>  
+					<div class="swiper-slide"><img src="${pageContext.request.contextPath}/images/banner2.jpg" alt=""></div>  
 				</div>
 				<!-- Add Pagination -->
 				<div class="swiper-pagination"></div> 
@@ -66,25 +70,32 @@
 			<!-- 热门推荐 -->
 			<div class="popular" id="popular">
 				<h1>热门推荐&nbsp;Hot recommend</h1>
+				<%
+					List<Goods> ltHotG = (List<Goods>)session.getAttribute("ltHotG");
+					if(ltHotG!=null&&ltHotG.size()>=5){
+				%>
 				<div class="popularLeft">
-					<a href="product.html"><img src="images/hot1.jpg" alt=""></a>
+					<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(0).getG_id() %>><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(0) %>" alt=""></a>
 				</div>
 				<div class="popularRight">
 					<div class="new-product">
-						<a href="product.html"><img src="images/hot2.jpg" alt=""></a>
+						<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(1).getG_id() %>"><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(1).getLtMage().get(1) %>" alt=""></a>
 					</div>
 					<ul>
 						<li>
-							<a href="product.html"><img src="images/hot3.jpg" alt=""></a><img src="images/hotIcon.png" class="hot" alt="热卖">
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(2).getG_id() %>"><img src="images/hot3.jpg" alt=""></a><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(2) %>" class="hot" alt="热卖">
 						</li>
 						<li>
-							<a href="product.html"><img src="images/hot4.jpg" alt=""></a><img src="images/hotIcon.png" class="hot" alt="热卖">
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(3).getG_id() %>"><img src="images/hot4.jpg" alt=""></a><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(3) %>" class="hot" alt="热卖">
 						</li>
 						<li>
-							<a href="product.html"><img src="images/hot5.jpg" alt=""></a><img src="images/hotIcon.png" class="hot" alt="热卖">
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(4).getG_id() %>"><img src="images/hot5.jpg" alt=""></a><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(4) %>" class="hot" alt="热卖">
 						</li>
 					</ul>
 				</div>
+				<%
+				}
+				%>
 			</div>
 			
 			<!-- 新鲜上架 -->
@@ -92,67 +103,21 @@
 				<h1>新鲜上架&nbsp;What's new</h1>
 				<div class="freshItem">
 					<ul>
+					<%
+						List<Goods> ltNewG = (List<Goods>)session.getAttribute("ltNewG");
+						if(ltNewG!=null&&ltNewG.size()>0){
+							for(Goods goods: ltNewG){
+					%>		
 						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic1.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=goods.getG_id() %> title="">
+								<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0) %>" alt="新鲜上架"></div>
+								<div class="freshText"><%=goods.getG_title() %></div>
 							</a>
 						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic2.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic3.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic4.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic5.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic5.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic4.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic3.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic2.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
-						<li>
-							<a href="product.html" title="">
-								<div class="img"><img src="images/pic1.jpg" alt="新鲜上架"></div>
-								<div class="freshText">新鲜上架产品标题</div>
-							</a>
-						</li>
+					<%
+							}
+						}
+					%>
 					</ul>
 				</div>
 			</div>
@@ -176,27 +141,22 @@
 					<div class="diyGoods">
 						<div class="freshItem">
 							<ul>
+							<%
+								List<GoodsSingle> ltA = (List<GoodsSingle>)session.getAttribute("ltA");
+								if(ltA!=null&&ltA.size()>0){
+									for(GoodsSingle singleA:ltA){
+							%>
 								<li>
 									<a href="javascript:;" title="">
-										<div class="img"><img src="images/fruit1.jpg" alt="苹果"></div>
-										<div class="freshText">苹果</div>
+										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleA.getLtMage().get(0) %>" alt="苹果"></div>
+										<div class="freshText"><%=singleA.getGs_title() %></div>
 									</a>
 									<div class="select"><span></span></div>
 								</li>
-								<li>
-									<a href="javascript:;" title="">
-										<div class="img"><img src="images/fruit2.jpg" alt="草莓"></div>
-										<div class="freshText">草莓</div>
-									</a>
-									<div class="select"><span></span></div>
-								</li>
-								<li>
-									<a href="javascript:;" title="">
-										<div class="img"><img src="images/fruit3.jpg" alt="葡萄"></div>
-										<div class="freshText">葡萄</div>
-									</a>
-									<div class="select"><span></span></div>
-								</li>
+							<%
+									}
+								}
+							%>
 							</ul>
 						</div>
 					</div>
@@ -204,34 +164,22 @@
 					<div class="diyGoods" style="display: none;">
 						<div class="freshItem">
 							<ul>
+							<%
+								List<GoodsSingle> ltB = (List<GoodsSingle>)session.getAttribute("ltB");
+								if(ltB!=null&&ltB.size()>0){
+									for(GoodsSingle singleB:ltB){
+							%>
 								<li>
 									<a href="javascript:;" title="">
-										<div class="img"><img src="images/flower3.jpg" alt="薰衣草"></div>
-										<div class="freshText">薰衣草</div>
+										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleB.getLtMage().get(0) %>" alt="薰衣草"></div>
+										<div class="freshText"><%=singleB.getGs_title() %></div>
 									</a>
 									<div class="select"><span></span></div>
 								</li>
-								<li>
-									<a href="javascript:;" title="">
-										<div class="img"><img src="images/flower1.jpg" alt="玫瑰花"></div>
-										<div class="freshText">玫瑰花</div>
-									</a>
-									<div class="select"><span></span></div>
-								</li>
-								<li>
-									<a href="javascript:;" title="">
-										<div class="img"><img src="images/flower2.jpg" alt="栀子花"></div>
-										<div class="freshText">栀子花</div>
-									</a>
-									<div class="select"><span></span></div>
-								</li>
-								<li>
-									<a href="javascript:;" title="">
-										<div class="img"><img src="images/flower4.jpg" alt="水仙花"></div>
-										<div class="freshText">水仙花</div>
-									</a>
-									<div class="select"><span></span></div>
-								</li>
+							<%
+									}
+								}
+							%>
 							</ul>
 						</div>
 					</div>

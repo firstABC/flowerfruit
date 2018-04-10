@@ -1,87 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>水果鲜花</title>
 
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
 
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
-	<script type="text/javascript" src="js/pick.min.1.0.2.js"></script>
-	<script type="text/javascript" src="js/numPrice.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/pick.min.1.0.2.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/numPrice.js"></script>
 </head>
 <body>
 
 	<div class="mainBody">
-		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<a href="login.html">登录</a>
-					<a href="register.html">注册</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		            <div class="cart">
-		            	<a href="viewCart.html"><span>14</span></a> 
-		            </div>
-				</div>
-			</div>
-			<div class="show_table">
-				<div class="topmenu clearfix">
-					<ul>
-						<li>
-							<a href="index.html" class="til">
-								<h3>Home</h3>
-								<h4>首页</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#popular" class="til">
-								<h3>Hot recommend</h3>
-								<h4>热门推荐</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#freshUp" class="til">
-								<h3>What's new</h3>
-								<h4>新鲜上架</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#diy" class="til">
-								<h3>Do it youself</h3>
-								<h4>自己搭配</h4>
-							</a>
-						</li>
-					</ul>
-				</div>	
-			</div>
-		</header><!-- /header -->
+		<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
 
 		<div class="main">
 			<div class="product clearfix">
 				<div class="productLeft">
-					<img src="images/hot1.jpg" alt="">
+					<img src="${pageContext.request.contextPath}/upload/${goodsDetal.ltMage.get(0).pathName }" alt="">
 					<!-- <img src="images/hot2.jpg" alt=""> -->
 				</div>
 				<div class="productRight">
-					<div class="brand"><a href="javascript:;">水果鲜花产品</a></div>
-					<div class="price-label price clearfix" style="display: none;">¥680.00</div>
-					<div class="price-label sum_price clearfix">￥680.00</div>
+					<div class="brand"><a href="javascript:;">${goodsDetal.g_title}</a></div>
+					<div class="price-label price clearfix" style="display: none;">¥${goodsDetal.g_price }</div>
+					<div class="price-label sum_price clearfix">￥${goodsDetal.g_price }</div>
 					<div class="size">
 						<ul>
 							<li class="active"><a href="javascript:;" title="">S</a></li>
@@ -93,14 +41,14 @@
                     	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 					</div>
 					<a href="javascript:;" class="cart">加入购物车</a>
-					<a href="payment.html" class="add_link">立即支付</a>
+					<a href="${pageContext.request.contextPath}/payment.jsp" class="add_link">立即支付</a>
 					<div class="note">
 			            <h3>规格参数<span>composition</span></h3>
-			            <p>它具有清新特别的颜色，高品质的天鹅绒外盒，更配有可爱的苔藓小熊，可谓人见人爱。</p>
+			            <p>${goodsDetal.g_parameter }</p>
 	            	</div>
 	            	<div class="note">
 			            <h3>推荐理由<span>style notes</span></h3>
-			            <p>花盒尺寸：18*18*12cm<br/>早在20世纪的德国出现。它是用高科技手段，将鲜花经过脱水、保色、干燥等复杂程序加工而成的干花。永生花的色泽、手感与鲜花无异，它保持了鲜花的特质，却可以更长久地陪伴在身边（一般可保存3年以上），是“永不凋谢”的鲜花。</p>
+			            <p><br/>${goodsDetal.g_recommend }</p>
 	            	</div>
 	            	<div class="note">
 			            <h3>退换货说明<span>return & exchange</span></h3>

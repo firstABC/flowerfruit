@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="flower.fruit.shop.dao.OrdersDao">
+	<resultMap id="ordersMap" type="Orders" >
+		<id property="or_id" column="or_id"/>
+		<result property="g_id" column="g_id"/>
+		<result property="or_number" column="or_number"/>
+		<result property="or_date" column="or_date"/>
+		<result property="or_price" column="or_price"/>
+		<result property="or_status" column="or_status"/>
+		<result property="user_id" column="user_id"/>
+		<result property="ua_id" column="ua_id"/>
+	</resultMap>
+	
+	<insert id="addOrder" parameterType="Orders">
+		insert into order(or_id,g_id,or_number,or_date,or_price,or_status,user_id,ua_id)
+		values(#{or_id},#{g_id},#{or_number},#{or_date},#{or_price},#{or_status},#{user_id},#{ua_id})
+	</insert>
+	
+	<select id="selectAll" resultMap="ordersMap">
+		select * from order
+	</select>
+</mapper>

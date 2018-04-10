@@ -16,4 +16,13 @@ public interface GoodsDao {
 	
 	//首页新品
 	public List<Goods> selectGoodsByNew();
+	
+	//后台管理
+	public List<Goods> selectGoodsForManage();
+	
+	//根据商品id查询商品详情
+	public Goods selectGoodsById(String g_id);
+	
+	//修改商品
+	public int alterGoods(Goods goods);
 }

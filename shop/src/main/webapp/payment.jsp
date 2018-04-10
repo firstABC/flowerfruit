@@ -6,50 +6,41 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>支付</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
 
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
-	<script type="text/javascript" src="js/pick.min.1.0.2.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/pick.min.1.0.2.js"></script>
 	<!-- 订单支付 -->
-	<script type="text/javascript" src="js/carts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/carts.js"></script>
+	<script type="text/javascript">
+		function toCreateOrder(){
+			var option = {
+		    		url:'${pageContext.request.getContextPath()}/order/toAdd',
+		    		type :"post",
+		    		dataType:'json',
+		    		headers:{"ClientCallMode" : "ajax"}, 
+		    		success : function(data) {
+		    			if(data.message == 'error'){
+							alert("购买失败！");
+						}else{
+							window.location.href="${pageContext.request.contextPath}/paymentSuc.jsp";
+							//alert("修改成功！");
+						}
+		            },
+		            error: function(data) {
+		                alert(JSON.stringify(data) + "--修改失败,请刷新后重试");
+		            }
+		         };
+		   	 	$("#publish_form").ajaxSubmit(option);
+		   	 	return false;
+		}
+	</script>
 </head>
 <body>
 	<div class="mainBody">
-		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<div class="myInfoTi">
-						柯志慧
-						<div class="myInfo" style="display: none;">
-							<ul>
-								<li><a href="myInfo.html" title="">基本信息</a></li>
-								<li><a href="myMenu.html" title="">我的订单</a></li>
-								<li><a href="myAddress.html" title="">配送地址</a></li>
-								<li><a href="productComment.html" title="">商品评价</a></li>
-							</ul>
-						</div>
-					</div>
-					<a href="javascript:;">退出</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		            <div class="cart">
-		            	<a href="viewCart.html"><span>14</span></a> 
-		            </div>
-				</div>
-			</div>
-		</header><!-- /header -->
+		<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
 		
 		<div class="main">
 			<div class="newcart payment">
@@ -84,6 +75,7 @@
 	            	<h2 class="paymentT">商品信息</h2>
 	            	<div class="new-pro-list">
 		            	 <div class="cartBox">
+		            	 <form action="" id="publish_form">
 				            <table class="order_content" cellpadding="0" cellspacing="0" border="0">
 				            	<tr class="no-border-top">
 				            		<th>
@@ -100,27 +92,30 @@
 				                        <input type="checkbox" id="checkbox_8" class="son_check">
 				                        <label for="checkbox_8"></label>
 				                    </td>
-				                    <td><a href="javascript:;" target="_blank"><img src="images/hot4.jpg"></a></td>
+				                    <td><a href="javascript:;" target="_blank"><img src="${pageContext.request.contextPath}/upload/${goodsDetal.ltMage.get(0).pathName }"></a></td>
 				                    <td>
 		            					<a href="javascript:;" target="_blank">
-				                            <p style="width:300px;padding-right:20px">草莓水果鲜花</p>
+				                            <p style="width:300px;padding-right:20px">${goodsDetal.g_title}</p>
+				                            <input type="hidden" name="g_price" value="${goodsDetal.g_price}">
+				                            <input type="hidden" name="g_id" value="${goodsDetal.g_id}">
 				                            <p class="new-sku" style="width:300px;padding-right:20px"></p>
 				                            <p class="size">尺寸：S</p>
 			                        	</a>
 			                        </td>
 				                    <td>
-				                        <p class="price">￥300</p>
+				                        <p class="price">￥${goodsDetal.g_price }</p>
 				                    </td>
 				                    <td>
 			                            <div class="amount_box">
-			                            	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
+			                            	<span class="reduce reSty">-</span><input class="sum" name="or_number" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 			                            </div>
 			                        </td>
 				                    <td>
-				                        <p class="sum_price">￥300</p>
+				                        <p class="sum_price">￥${goodsDetal.g_price }</p>
 				                    </td>
 				                </tr>
 				            </table>
+				            </form>
 				        </div>
 	            	</div>
 	            	<!-- 结账 -->
@@ -128,7 +123,7 @@
 	                    <div class="total-fr">
 	                      <span class="piece">已选商品<strong class="piece_num">0</strong>件</span>
 	                      <span class="totalMoney">共计: <strong class="total_text">￥0</strong></span>
-	                      <a class="new-cart-button" href="paymentSuc.html">立即结算</a>
+	                      <a class="new-cart-button" href="javascript:toCreateOrder();">立即结算</a>
 	                    </div>
 	                </div>
 	            </div>

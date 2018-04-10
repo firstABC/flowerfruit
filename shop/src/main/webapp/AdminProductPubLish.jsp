@@ -10,21 +10,22 @@
 	 <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
    <script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
      <script type="text/javascript">
-	  	function toEdit(){
+	  	function toPublishAdd(){
 	    	var option = {
-	    		url:'${pageContext.request.getContextPath()}/goods/toEditNow',
+	    		url:'${pageContext.request.getContextPath()}/goods/toPublish',
 	    		type :"post",
 	    		dataType:'json',
 	    		headers:{"ClientCallMode" : "ajax"}, 
 	    		success : function(data) {
 	    			if(data.message == 'error'){
-						alert("修改失败！");
+						alert("发布失败！");
 					}else{
-						alert("修改成功！");
+						alert("发布成功！");
+						window.location.href="${pageContext.request.getContextPath()}/index.jsp";
 					}
 	            },
 	            error: function(data) {
-	                alert(JSON.stringify(data) + "--修改失败,请刷新后重试");
+	                alert(JSON.stringify(data) + "--上传失败,请刷新后重试");
 	            }
 	         };
 	   	 	$("#publish_form").ajaxSubmit(option);
@@ -47,12 +48,11 @@
 				<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
 	    			<tr>
 	    				<td width="100">商品名</td>
-	    				<td><input type="text" name="g_title" value="${goodsEdit.g_title }"></td>
-	    				<input type="hidden" name="g_id" value="${goodsEdit.g_id }" >
+	    				<td><input type="text" name="g_title" value=""></td>
 	    			</tr>
 	    			<tr>
 	    				<td width="100">价格</td>
-	    				<td><input type="number" name="g_price" value="${goodsEdit.g_price }" placeholder=""></td>
+	    				<td><input type="number" name="g_price" value="" placeholder=""></td>
 	    			</tr>
 	    			<tr>
 	    				<td width="100">状态</td>
@@ -65,21 +65,53 @@
 	    				</td>
 	    			</tr>
 	    			<tr>
+	    				<td width="100">上传商品图</td>
+	    				<td>
+	    					<p class="uploadTs">最多可上传4张图片</p>
+	    					<div class="images">
+		    					<div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						         <div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						         <div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						         <div class="img">
+						             <div class="addhao">
+						                 <input type="file" name="file" class="fileinput">
+						             </div>
+						             <div class="on"></div>
+						         </div>
+						    </div>
+						</td>
+	    			</tr>
+	    			<tr>
 	    				<td width="100">规格说明</td>
 	    				<td>
-	    					<textarea name="g_parameter" value="${goodsEdit.g_parameter }"></textarea>
+	    					<textarea name="g_parameter"></textarea>
 	    				</td>
 	    			</tr>
 	    			<tr>
 	    				<td width="100">推荐理由</td>
 	    				<td>
-	    					<textarea name="g_recommend" value="${goodsEdit.g_recommend} }"></textarea>
+	    					<textarea name="g_recommend"></textarea>
 	    				</td>
 	    			</tr>
 	    			<tr>
 	    				<td></td>
 			            <td style="padding-top: 20px;">
-			             	<a href="javascript:toEdit();" class="edit">确认修改</a> 
+			             	<a href="javascript:toPublishAdd();" class="edit">发布</a> 
 			            </td>
 		            </tr>
 	    		</table>

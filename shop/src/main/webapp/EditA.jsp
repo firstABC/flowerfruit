@@ -5,14 +5,14 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>商品管理</title>
+	<title>组合管理</title>
 	<link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet">
-	 <script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
-   <script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
-     <script type="text/javascript">
-	  	function toEdit(){
+    <script src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
+    <script type="text/javascript">
+	  	function toEditSingle(){
 	    	var option = {
-	    		url:'${pageContext.request.getContextPath()}/goods/toEditNow',
+	    		url:'${pageContext.request.getContextPath()}/gs/toEditNow',
 	    		type :"post",
 	    		dataType:'json',
 	    		headers:{"ClientCallMode" : "ajax"}, 
@@ -37,49 +37,37 @@
 
 	<div class="content">
 		<div class="title">
-			<a href="AdminUser.html" title="">用户管理</a>
-			<a href="AdminProduct.html" title="" class="active">商品管理</a>
-			<a href="AdminOrder.html" title="">订单管理</a>
+			<a href="AdminUser.html">用户管理</a>
+			<a href="AdminProduct.html">商品管理</a>
+			<a href="AdminOrder.html">订单管理</a>
+			<a href="AdminGroup.html" class="active">组合管理</a>
 		</div>
 		<div class="table">
 			<p>编辑商品</p>
-			<form method="post" enctype="multipart/form-data" id="publish_form" name="publish_form">
+			<form method="post" enctype="multipart/form-data" id="publish_form">
 				<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
 	    			<tr>
+	    				<input type="hidden" name="gs_id" value="#{goodsA.gs_id}">
 	    				<td width="100">商品名</td>
-	    				<td><input type="text" name="g_title" value="${goodsEdit.g_title }"></td>
-	    				<input type="hidden" name="g_id" value="${goodsEdit.g_id }" >
+	    				<td><input type="text" name="gs_title" value="#{goodsA.gs_title }"></td>
 	    			</tr>
 	    			<tr>
 	    				<td width="100">价格</td>
-	    				<td><input type="number" name="g_price" value="${goodsEdit.g_price }" placeholder=""></td>
+	    				<td><input type="number" name="gs_price" value="#{goodsA.gs_price }" placeholder=""></td>
 	    			</tr>
 	    			<tr>
-	    				<td width="100">状态</td>
+	    				<td width="100">分类</td>
 	    				<td>
-	    					<select name="g_status">
-	    						<option value="1"> 推荐 </option>
-	    						<option value="2"> 普通 </option>
-	    						<option value="3">新品上架</option>
+	    					<select id="gs_type">
+	    						<option value="A">水果</option>
+	    						<option value="B">鲜花</option>
 	    					</select>
-	    				</td>
-	    			</tr>
-	    			<tr>
-	    				<td width="100">规格说明</td>
-	    				<td>
-	    					<textarea name="g_parameter" value="${goodsEdit.g_parameter }"></textarea>
-	    				</td>
-	    			</tr>
-	    			<tr>
-	    				<td width="100">推荐理由</td>
-	    				<td>
-	    					<textarea name="g_recommend" value="${goodsEdit.g_recommend} }"></textarea>
 	    				</td>
 	    			</tr>
 	    			<tr>
 	    				<td></td>
 			            <td style="padding-top: 20px;">
-			             	<a href="javascript:toEdit();" class="edit">确认修改</a> 
+			             	<a href="javascript:toEditSingle();" class="edit">确认修改</a> 
 			            </td>
 		            </tr>
 	    		</table>
@@ -94,6 +82,22 @@
 			var file = this.files[0];
 			    readFile(file,$(this).parent().siblings(".on"));
 			});
+			$(".on").mouseover(function () {
+			    $(this).children(".xian").show();
+			    $(this).children(".del").show();
+			});
+			$(".on").mouseleave(function () {
+			    $(this).children(".xian").hide();
+			    $(this).children(".del").hide();
+			});
+			$(".del").click(function () {
+		      	$(this).next().remove();
+		      	$(".xian").hide();
+		      	$(".del").hide();
+		      	$(this).parent().hide();
+		      	$(this).parent().siblings(".addhao").show();
+		      	$(this).parent().siblings(".addhao").children().val("");
+		 	});
 			var on =document.querySelector(".on");
 			//    需要把阅读的文件传进来file element是把读取到的内容放入的容器
 			function readFile(file,element) {

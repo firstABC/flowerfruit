@@ -8,6 +8,7 @@ public class UserAddress {
 	private String ua_mobile;
 	private String ua_province;
 	private String ua_detal;
+	
 	public String getUa_id() {
 		return ua_id;
 	}

@@ -95,6 +95,10 @@
 					</div>
 					<a href="javascript:;" class="cart">加入购物车</a>
 					<a href="payment.html" class="add_link">立即支付</a>
+					<div class="note remark">
+			            <h3>备注<span>remark</span></h3>
+			            <div class="remarkInput"><textarea placeholder="请输入您的要求"></textarea></div>
+			        </div>
 	            	<div class="note">
 			            <h3>说明<span>explain</span></h3>
 			            <p>我们会根据客户所选择的水果、鲜花进行搭配、包装，我们将竭尽所能满足您的需求。</p>
@@ -133,4 +137,4 @@
 
 
 </body>
-</html>>
+</html>

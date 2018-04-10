@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="flower.fruit.shop.dao.GoodsSingleDao">
+	<resultMap id="goodsSingleMap" type="GoodsSingle" >
+		<id property="gs_id" column="gs_id"/>
+		<result property="gs_title" column="gs_title"/>
+		<result property="gs_price" column="gs_price"/>
+		<result property="gs_type" column="gs_type"/>
+		<collection property="ltMage" ofType="flower.fruit.shop.domain.Images">
+			<id property="im_id" column="im_id"/>
+			<result property="pathName" column="pathName"/>
+			<result property="g_id" column="g_id"/>
+		</collection>
+	</resultMap>
+	
+	<insert id="publishSingeGoods" parameterType="GoodsSingle">
+		insert into goodssingle(gs_id,gs_title,gs_price,gs_type) 
+		values(#{gs_id},#{gs_title},#{gs_price},#{gs_type})
+	</insert>
+	
+	<select id="selectAllGoodsSingleA" resultMap="goodsSingleMap">
+		select * from goodssingle gs ,images i where gs.gs_id = i.g_id and gs.gs_type="A"
+	</select>
+	
+	<select id="selectAllGoodsSingleB" resultMap="goodsSingleMap">
+		select * from goodssingle gs ,images i where gs.gs_id = i.g_id and gs.gs_type="B"
+	</select>
+	
+	<select id="selectbyId" resultMap="goodsSingleMap" parameterType="String">
+		select * from goodssingle gs ,images i where gs.gs_id = i.g_id and gs.gs_id = #{gs_id}
+	</select>
+	
+	<update id="alterGoodsSingle" parameterType="GoodsSingle">
+		update goodssingle set gs_title=#{gs_title},gs_price=#{gs_price},gs_type=#{gs_type}
+	</update>
+	
+	
+	
+</mapper>

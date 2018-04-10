@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -85,19 +84,18 @@
 				</div>
 				<!-- 新建配送地址 -->
 				<div class="protocol-warp formAddress" style="display: none;">
-				<form action="" id="form1" name="form1">
 					<div class="form-list">
-						<h2>新建配送地址</h2>
+						<h2>新建配送地址<a href="javascript:;" class="delImg"><img src="images/del.png" alt="删除"></a></h2>
 						<div class="field">
 		                  	<label for="username"><em>*</em>收件人</label>
 		                  	<div class="input-box">
-		                    	<input type="text" name="username" value="" title="" class="input-text">
+		                    	<input type="text" name="name" value="南柯" title="" class="input-text">
 		                  	</div>
 		                </div>
 		                <div class="field">
 		                  	<label for="phone"><em>*</em>手机号</label>
 		                  	<div class="input-box">
-		                  		<input type="tel" name="phone" value="" placeholder="" class="input-text">
+		                  		<input type="tel" name="" value="" placeholder="" class="input-text">
 		                  	</div>
 		                </div>
 						<div class="field">
@@ -114,7 +112,6 @@
 						<!-- 提交 -->
 						<button type="button" title="提交" class="buttonTj"><span>提交</span></button>
 					</div> 
-					</form>
 				</div>
 			</div>
 			
@@ -156,9 +153,9 @@
 		    $('.buttonNew').click(function(){
 		    	$('.formAddress').show();
 		    })
-		    $('.buttonTj').click(function(){
+		    $('.delImg, .buttonTj').on('click', function(event) {
 		    	$('.formAddress').hide();
-		    })
+		    });
 
 		    // 城市三级联动
 		    $(".pick-area").pickArea({
@@ -183,6 +180,7 @@
 		            thisdom.next().val($(".pick-area-hidden").val());//$(".pick-area-hidden").val()是页面中隐藏域的值，存放着每次选中一个省、市或者县的时候，当前文本存放的省市县的最新值，每点击一次下拉框里的li，这个值就会立即更新
 		        }
 		    });
+
 		})
 	</script>
 

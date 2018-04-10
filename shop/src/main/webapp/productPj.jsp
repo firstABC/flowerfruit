@@ -145,7 +145,7 @@
 				<!-- 写评价 -->
 				<div class="protocol-warp formAddress">
 					<div class="form-list">
-						<h2>写评价<span class="closeModel">X</span></h2>
+						<h2>写评价<a href="product.html" class="delImg"><img src="images/del.png" alt="删除"></a></h2>
 						<div class="writePj">
 							<textarea name="" placeholder="请输入你的评价内容"></textarea>
 						</div>
@@ -183,6 +183,6 @@
 		      </div>
 		</footer>
 	</div>
-
+	
 </body>
 </html>
