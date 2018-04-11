@@ -7,12 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>水果鲜花</title>
 
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
 
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
-	<script type="text/javascript" src="js/pick.min.1.0.2.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/pick.min.1.0.2.js"></script>
 </head>
 <body>
 
@@ -25,9 +25,9 @@
 			<div class="topmenu-user clearfix">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/getUserInfoById?userId=${userId}" title="">基本信息</a></li>
-					<li><a href="myMenu.html" title="">我的订单</a></li>
-					<li><a href="myAddress.html" title="">配送地址</a></li>
-					<li class="active"><a href="productComment.jsp" title="">商品评价</a></li>
+					<li><a href="${pageContext.request.contextPath}/myMenu.jsp" title="">我的订单</a></li>
+					<li><a href="${pageContext.request.contextPath}/myAddress.jsp" title="">配送地址</a></li>
+					<li><a href="${pageContext.request.contextPath}/productComment.jsp" title="">商品评价</a></li>
 				</ul>
 			</div>
 

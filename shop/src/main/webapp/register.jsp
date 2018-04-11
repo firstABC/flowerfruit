@@ -24,25 +24,25 @@
 				<div class="topmenu clearfix">
 					<ul>
 						<li>
-							<a href="index.html" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index" class="til">
 								<h3>Home</h3>
 								<h4>首页</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#popular" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index#popular" class="til">
 								<h3>Hot recommend</h3>
 								<h4>热门推荐</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#freshUp" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index#freshUp" class="til">
 								<h3>What's new</h3>
 								<h4>新鲜上架</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#diy" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index#diy" class="til">
 								<h3>Do it youself</h3>
 								<h4>自己搭配</h4>
 							</a>

@@ -6,60 +6,40 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>购物车</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
 
-	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
 	<script src="js/carts.js"></script>
 </head>
 <body>
 	<div class="mainBody" style="position: absolute;">
 		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<a href="login.html">登录</a>
-					<a href="register.html">注册</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		            <div class="cart">
-		            	<a href="viewCart.html"><span>14</span></a> 
-		            </div>
-				</div>
-			</div>
+			<jsp:include page="header.jsp" flush="true"/>
 			<div class="show_table">
 				<div class="topmenu clearfix">
 					<ul>
 						<li>
-							<a href="index.html" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index" class="til">
 								<h3>Home</h3>
 								<h4>首页</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#popular" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index#popular" class="til">
 								<h3>Hot recommend</h3>
 								<h4>热门推荐</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#freshUp" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index#freshUp" class="til">
 								<h3>What's new</h3>
 								<h4>新鲜上架</h4>
 							</a>
 						</li>
 						<li>
-							<a href="index.html#diy" class="til">
+							<a href="${pageContext.request.contextPath}/switch/index#diy" class="til">
 								<h3>Do it youself</h3>
 								<h4>自己搭配</h4>
 							</a>

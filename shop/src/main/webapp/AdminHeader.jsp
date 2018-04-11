@@ -32,17 +32,6 @@
 			<div class="logo">
 				<a href="index.jsp"><img src="images/logo.png" alt="水果鲜花"></a>
 			</div>
-			<div class="right-contaier">
-				<div class="select">
-	                <form>
-	                    <input class="post" type="button">
-	                    <input class="text" type="text" value="">
-	                </form>
-	            </div>
-	            <div class="cart">
-	            	<a href="viewCart.jsp"><span>14</span></a> 
-	            </div>
-			</div>
 	</div>
 </body>
 <script type="text/javascript">
