@@ -22,7 +22,7 @@
 	</header>
 	<div class="content">
 		<div class="title">
-			<a href="javascript:;" title="" class="active">用户管理</a>
+			<a href="AdminUser.jsp" title="" class="active">用户管理</a>
 			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage">商品管理</a>
 			<a href="AdminOrder.jsp" title="">订单管理</a>
 		</div>
