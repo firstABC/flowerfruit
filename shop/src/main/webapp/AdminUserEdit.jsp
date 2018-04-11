@@ -17,7 +17,7 @@
 	<div class="content">
 		<div class="title">
 			<a href="AdminUser.jsp" title="" class="active">用户管理</a>
-			<a href="AdminProduct.html" title="">商品管理</a>
+			<a href="AdminProduct.jsp" title="">商品管理</a>
 			<a href="AdminOrder.html" title="">订单管理</a>
 		</div>
 		<div class="table">
