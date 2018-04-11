@@ -14,11 +14,11 @@
 	</resultMap>
 	
 	<insert id="addOrder" parameterType="Orders">
-		insert into order(or_id,g_id,or_number,or_date,or_price,or_status,user_id,ua_id)
+		insert into ordersu(or_id,g_id,or_number,or_date,or_price,or_status,user_id,ua_id)
 		values(#{or_id},#{g_id},#{or_number},#{or_date},#{or_price},#{or_status},#{user_id},#{ua_id})
 	</insert>
 	
 	<select id="selectAll" resultMap="ordersMap">
-		select * from order
+		select * from ordersu
 	</select>
 </mapper>

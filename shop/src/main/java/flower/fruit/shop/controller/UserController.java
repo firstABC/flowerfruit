@@ -54,8 +54,8 @@ public class UserController{
 			if(loginUser != null){
 				 session.setAttribute("userId", loginUser.getUserId());
 				 session.setAttribute("userName", userName);
-			     //return "forward:/switch/toIdex";
-				 return "index";
+			     return "forward:/switch/index";
+				// return "index";
 			}
 			else{
 				request.setAttribute("msg", "登录失败");

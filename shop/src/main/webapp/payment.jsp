@@ -8,7 +8,7 @@
 	<title>支付</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
-
+	<script src="${pageContext.request.contextPath}/js/jquery-2.1.1.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/pick.min.1.0.2.js"></script>
@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/carts.js"></script>
 	<script type="text/javascript">
 		function toCreateOrder(){
-			var option = {
+			/* var option = {
 		    		url:'${pageContext.request.getContextPath()}/order/toAdd',
 		    		type :"post",
 		    		dataType:'json',
@@ -32,15 +32,15 @@
 		            error: function(data) {
 		                alert(JSON.stringify(data) + "--修改失败,请刷新后重试");
 		            }
-		         };
-		   	 	$("#publish_form").ajaxSubmit(option);
-		   	 	return false;
+		         }; */
+		   	 	$("#publish_form").submit();
+		   	// 	return false;
 		}
 	</script>
 </head>
 <body>
 	<div class="mainBody">
-		<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
+		<jsp:include page="header.jsp" flush="true"/>
 		
 		<div class="main">
 			<div class="newcart payment">
@@ -75,14 +75,14 @@
 	            	<h2 class="paymentT">商品信息</h2>
 	            	<div class="new-pro-list">
 		            	 <div class="cartBox">
-		            	 <form action="" id="publish_form">
+		            	 <form action="${pageContext.request.contextPath}/order/toAdd" method="post" id="publish_form">
 				            <table class="order_content" cellpadding="0" cellspacing="0" border="0">
 				            	<tr class="no-border-top">
 				            		<th>
 				                		<input type="checkbox" id="all" class="whole_check">
 				                    	<label for="all"></label>
 				                    </th>
-		            				<th colspan="2">全选<span class="group-desc"></span></th>
+		            				<th colspan="2">尺寸<span class="group-desc"></span></th>
 		            				<th>单价</th>
 		            				<th style="text-align: center">件数</th>
 		            				<th>小计</th>

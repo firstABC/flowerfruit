@@ -2,6 +2,7 @@ package flower.fruit.shop.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -117,5 +118,22 @@ public class GoodsSingleController {
 		else
 			map.put("message", "error");
 		return map;
+	}
+	
+	@RequestMapping("/singleOR")
+	public String singleOR(HttpServletRequest request,HttpSession session){
+		String[] gs_ids =request.getParameterValues("gs_ids");
+		List<GoodsSingle> ltG = new ArrayList<GoodsSingle>();
+		double gs_priceS = 0;
+		for(int i=0;i<gs_ids.length;i++){
+			String gs_id = gs_ids[i];
+			GoodsSingle goodsSingle = goodsSingleDao.selectbyId(gs_id);
+			String gs_price = goodsSingle.getGs_price();
+			gs_priceS = gs_priceS+Double.parseDouble(gs_price);
+			ltG.add(goodsSingle);
+		}
+		session.setAttribute("gs_priceS", gs_priceS);
+		session.setAttribute("gsLt", ltG);
+		return "/productZ";
 	}
 }

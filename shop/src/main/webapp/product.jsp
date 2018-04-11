@@ -18,7 +18,7 @@
 <body>
 
 	<div class="mainBody">
-		<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
+		<jsp:include page="header.jsp" flush="true"/>
 
 		<div class="main">
 			<div class="product clearfix">

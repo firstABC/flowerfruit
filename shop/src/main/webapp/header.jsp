@@ -38,7 +38,7 @@
 			</div>
           		
 			<div class="logo">
-				<a href="index.jsp"><img src="images/logo.png" alt="水果鲜花"></a>
+				<a href="index.jsp"><img src="${pageContext.request.contextPath}/images/logo.png" alt="水果鲜花"></a>
 			</div>
 			<div class="right-contaier">
 				<div class="select">

@@ -38,8 +38,9 @@
 	<div class="content">
 		<div class="title">
 			<a href="AdminUser.html" title="">用户管理</a>
-			<a href="AdminProduct.html" title="" class="active">商品管理</a>
-			<a href="AdminOrder.html" title="">订单管理</a>
+			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage" class="active">商品管理</a>
+			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
+			<a href="${pageContext.request.contextPath}/gs/manageA" >组合管理</a>
 		</div>
 		<div class="table">
 			<p>编辑商品</p>
@@ -67,13 +68,13 @@
 	    			<tr>
 	    				<td width="100">规格说明</td>
 	    				<td>
-	    					<textarea name="g_parameter" value="${goodsEdit.g_parameter }"></textarea>
+	    					<textarea name="g_parameter" value="">${goodsEdit.g_parameter }</textarea>
 	    				</td>
 	    			</tr>
 	    			<tr>
 	    				<td width="100">推荐理由</td>
 	    				<td>
-	    					<textarea name="g_recommend" value="${goodsEdit.g_recommend} }"></textarea>
+	    					<textarea name="g_recommend" value="">${goodsEdit.g_recommend}</textarea>
 	    				</td>
 	    			</tr>
 	    			<tr>

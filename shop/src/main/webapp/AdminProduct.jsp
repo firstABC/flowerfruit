@@ -27,7 +27,7 @@
 			<a href="AdminGroup.html">组合管理</a>
 		</div>
 		<div class="table">
-			<a href="AdminProductEdit.html" class="edit">新增</a>
+			<a href="${pageContext.request.contextPath}/AdminProductPubLish.jsp" class="edit">新增</a>
 			<table cellspacing="0" cellpadding="0" class="tb">
 				<thead>
 					<tr>
@@ -54,7 +54,7 @@
 								if(ltImages!=null && ltImages.size()>0){
 									for(Images images : ltImages ){
 							%>	
-							<img src="${pageContext.request.contextPath}/upload/<%=images.getPathName() %>" alt="">
+							<img style="height: 480 ;width: 700" src="${pageContext.request.contextPath}/upload/<%=images.getPathName() %>" alt="">
 							<%	
 									}
 								}

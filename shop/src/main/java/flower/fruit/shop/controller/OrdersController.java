@@ -18,7 +18,8 @@ import flower.fruit.shop.dao.OrdersDao;
 import flower.fruit.shop.domain.Goods;
 import flower.fruit.shop.domain.Orders;
 
-@Controller("/order")
+@Controller
+@RequestMapping("order")
 public class OrdersController {
 
 	@Resource
@@ -26,13 +27,13 @@ public class OrdersController {
 	@Resource
 	private GoodsDao goodsDao;
 	
-	@ResponseBody
 	@RequestMapping("/toAdd")
-	public Map addOrder(HttpServletRequest request,HttpSession session){
+	public String addOrder(HttpServletRequest request,HttpSession session){
 		Map map = new ConcurrentHashMap();
 		String g_id = request.getParameter("g_id");
 		Double g_price = Double.parseDouble(request.getParameter("g_price"));
-		int or_number = Integer.parseInt(request.getParameter("or_number"));
+		//int or_number = Integer.parseInt(request.getParameter("or_number"));
+		int or_number = 1;
 		Double or_price = g_price;
 		for(int i=1;i<or_number;i++){
 			or_price=g_price.sum(g_price, g_price);
@@ -46,6 +47,7 @@ public class OrdersController {
 		orders.setOr_id(UUID.randomUUID().toString());
 		orders.setOr_number(or_number);
 		orders.setOr_status("A");
+		orders.setOr_date("11-11-11");
 		
 		
 		orders.setUa_id("111");
@@ -54,10 +56,9 @@ public class OrdersController {
 		int isOk = ordersDao.addOrder(orders);
 		
 		if(isOk>0)
-			map.put("message", "success");
+			return "/paymentSuc";
 		else
-			map.put("message", "error");
-		return map;
+			return "/paymentFail";
 	}
 	
 	@RequestMapping("/orderM")

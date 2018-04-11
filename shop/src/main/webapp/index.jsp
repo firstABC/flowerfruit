@@ -18,12 +18,17 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
+	<script type="text/javascript">
+	function toProductZ(){
+		$("#gs_form").submit();
+	}
+	</script>
 </head>
 <body>
 
 	<div class="mainBody">
 		<header>
-			<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
+			<jsp:include page="header.jsp" flush="true"/>
 			<div class="show_table">
 				<div class="topmenu clearfix">
 					<ul>
@@ -109,8 +114,8 @@
 							for(Goods goods: ltNewG){
 					%>		
 						<li>
-							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=goods.getG_id() %> title="">
-								<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0) %>" alt="新鲜上架"></div>
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=goods.getG_id() %>" title="">
+								<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName() %>" alt="新鲜上架"></div>
 								<div class="freshText"><%=goods.getG_title() %></div>
 							</a>
 						</li>
@@ -134,9 +139,10 @@
 			            	<a href="javascript:;">鲜花</a>
 			            </li>
 					</ul>
-		            <a href="productZ.html" target="" class="zuhe">开始组合</a>
+		            <a href="javascript:toProductZ();" target="" class="zuhe">开始组合</a>
 				</div>
 				<div class="diyContent">
+				<form action="${pageContext.request.contextPath}/gs/singleOR" method="post" id="gs_form">
 					<!-- 水果 -->
 					<div class="diyGoods">
 						<div class="freshItem">
@@ -147,6 +153,7 @@
 									for(GoodsSingle singleA:ltA){
 							%>
 								<li>
+									<input name ="gs_ids" type="checkbox" style="display: none" value="<%=singleA.getGs_id()%>">
 									<a href="javascript:;" title="">
 										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleA.getLtMage().get(0) %>" alt="苹果"></div>
 										<div class="freshText"><%=singleA.getGs_title() %></div>
@@ -170,6 +177,7 @@
 									for(GoodsSingle singleB:ltB){
 							%>
 								<li>
+								<input name ="gs_ids" type="checkbox" style="display: none" value="<%=singleB.getGs_id()%>">
 									<a href="javascript:;" title="">
 										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleB.getLtMage().get(0) %>" alt="薰衣草"></div>
 										<div class="freshText"><%=singleB.getGs_title() %></div>
@@ -183,6 +191,7 @@
 							</ul>
 						</div>
 					</div>
+				</form>
 				</div>
 			</div>
 

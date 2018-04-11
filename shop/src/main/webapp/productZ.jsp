@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="flower.fruit.shop.domain.GoodsSingle" %>
+<%@ page import="flower.fruit.shop.domain.Goods" %>
+<%@ page import="flower.fruit.shop.domain.Images" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,82 +11,37 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>水果鲜花</title>
 
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css">
 
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
-	<script type="text/javascript" src="js/pick.min.1.0.2.js"></script>
-	<script type="text/javascript" src="js/numPrice.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/pick.min.1.0.2.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/numPrice.js"></script>
 </head>
 <body>
 
 	<div class="mainBody">
-		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<a href="login.html">登录</a>
-					<a href="register.html">注册</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		            <div class="cart">
-		            	<a href="viewCart.html"><span>14</span></a> 
-		            </div>
-				</div>
-			</div>
-			<div class="show_table">
-				<div class="topmenu clearfix">
-					<ul>
-						<li>
-							<a href="index.html" class="til">
-								<h3>Home</h3>
-								<h4>首页</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#popular" class="til">
-								<h3>Hot recommend</h3>
-								<h4>热门推荐</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#freshUp" class="til">
-								<h3>What's new</h3>
-								<h4>新鲜上架</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#diy" class="til">
-								<h3>Do it youself</h3>
-								<h4>自己搭配</h4>
-							</a>
-						</li>
-					</ul>
-				</div>	
-			</div>
-		</header><!-- /header -->
+		<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
 
 		<div class="main">
 			<div class="product clearfix">
 				<div class="productLeft productLeft2">
-					<img src="images/flower1.jpg" alt="">
-					<img src="images/fruit1.jpg" alt="">
-					<img src="images/fruit2.jpg" alt="">
+				<%
+					List<GoodsSingle> ltGS =  (List<GoodsSingle>)session.getAttribute("gsLt");
+					if(ltGS!=null&&ltGS.size()>0){
+						for(GoodsSingle goodsSingle:ltGS){
+				%>
+					<img src="${pageContext.request.contextPath}/upload/<%=goodsSingle.getLtMage().get(0).getPathName() %>" alt="">
+				<%
+						}
+					}
+				%>	
 				</div>
 				<div class="productRight">
 					<div class="brand"><a href="javascript:;">水果鲜花自由搭配</a></div>
-					<div class="price-label price clearfix" style="display: none;">¥680.00</div>
-					<div class="price-label sum_price clearfix">￥680.00</div>
+					<div class="price-label price clearfix" style="display: none;">¥${gs_priceS}</div>
+					<div class="price-label sum_price clearfix">￥${gs_priceS}</div>
 					<div class="size">
 						<ul>
 							<li class="active"><a href="javascript:;" title="">S</a></li>
@@ -94,7 +53,7 @@
                     	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 					</div>
 					<a href="javascript:;" class="cart">加入购物车</a>
-					<a href="payment.html" class="add_link">立即支付</a>
+					<a href="" class="add_link">立即支付</a>
 					<div class="note remark">
 			            <h3>备注<span>remark</span></h3>
 			            <div class="remarkInput"><textarea placeholder="请输入您的要求"></textarea></div>

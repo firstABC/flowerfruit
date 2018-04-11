@@ -55,13 +55,16 @@ public class GoodsController {
 			for(int i =0;i<file.length;i++){
 				MultipartFile file1 = file[i];
 				boolean b = file1.isEmpty();
-				String name = System.currentTimeMillis()+file1.getOriginalFilename();
-				file1.transferTo(new File(path,name));
-				Images images = new Images();
-				images.setG_id(g_id);;
-				images.setIm_id(UUID.randomUUID().toString());
-				images.setPathName(name);
-				inMages = imagesDao.insertImage(images);	
+				if(!b){
+					String name = System.currentTimeMillis()+file1.getOriginalFilename();
+					file1.transferTo(new File(path,name));
+					Images images = new Images();
+					images.setG_id(g_id);;
+					images.setIm_id(UUID.randomUUID().toString());
+					images.setPathName(name);
+					inMages = imagesDao.insertImage(images);	
+				}
+				
 			}		
 		}
 		
