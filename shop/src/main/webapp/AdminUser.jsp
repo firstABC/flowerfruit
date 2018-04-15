@@ -22,9 +22,10 @@
 	</header>
 	<div class="content">
 		<div class="title">
-			<a href="AdminUser.jsp" title="" class="active">用户管理</a>
+			<a href="${pageContext.request.contextPath}/AdminUser.jsp" class="active">用户管理</a>
 			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage">商品管理</a>
-			<a href="AdminOrder.jsp" title="">订单管理</a>
+			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
+			<a href="${pageContext.request.contextPath}/gs/manageA" class="active">组合管理</a>
 		</div>
 		<div class="table">
 			<a href="AdminUserAdd.jsp" class="edit">新增</a>

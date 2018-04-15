@@ -21,10 +21,10 @@
 
 	<div class="content">
 		<div class="title">
-			<a href="AdminUser.html">用户管理</a>
-			<a href="javascript:;" class="active">商品管理</a>
-			<a href="AdminOrder.html">订单管理</a>
-			<a href="AdminGroup.html">组合管理</a>
+			<a href="${pageContext.request.contextPath}/AdminUser.jsp" class="active">用户管理</a>
+			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage" class="active">商品管理</a>
+			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
+			<a href="${pageContext.request.contextPath}/gs/manageA" >组合管理</a>
 		</div>
 		<div class="table">
 			<a href="${pageContext.request.contextPath}/AdminProductPubLish.jsp" class="edit">新增</a>

@@ -38,9 +38,10 @@
 
 	<div class="content">
 		<div class="title">
-			<a href="AdminUser.html" title="">用户管理</a>
-			<a href="AdminProduct.html" title="" class="active">商品管理</a>
-			<a href="AdminOrder.html" title="">订单管理</a>
+			<a href="${pageContext.request.contextPath}/AdminUser.jsp" class="active">用户管理</a>
+			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage" class="active">商品管理</a>
+			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
+			<a href="${pageContext.request.contextPath}/gs/manageA" >组合管理</a>
 		</div>
 		<div class="table">
 			<p>编辑商品</p>
