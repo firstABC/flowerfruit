@@ -12,6 +12,21 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/pick.min.1.0.2.js"></script>
+	<script type="text/javascript">
+		function toAddAddress(){
+			var ua_name = $("#ua_name").val()
+			var ua_mobile = $("#ua_mobile").val()
+			var ua_detal = $("#ua_detal").val()
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/addRess/add",
+				data:"ua_name="+ua_name+"ua_mobile="+ua_mobile+"ua_detal="+ua_detal,
+				success:function(data){
+					
+				}
+			});
+		}
+	</script>
 </head>
 <body>
 
@@ -52,17 +67,17 @@
 				<!-- 新建配送地址 -->
 				<div class="protocol-warp formAddress" style="display: none;">
 					<div class="form-list">
-						<h2>新建配送地址<a href="javascript:;" class="delImg"><img src="images/del.png" alt="删除"></a></h2>
+						<h2>新建配送地址<a href="javascript:;" class="delImg"><img src="${pageContext.request.contextPath}/images/del.png" alt="删除"></a></h2>
 						<div class="field">
 		                  	<label for="username"><em>*</em>收件人</label>
 		                  	<div class="input-box">
-		                    	<input type="text" name="name" value="南柯" title="" class="input-text">
+		                    	<input type="text" name="ua_name" id="ua_name" value="" title="" class="input-text">
 		                  	</div>
 		                </div>
 		                <div class="field">
 		                  	<label for="phone"><em>*</em>手机号</label>
 		                  	<div class="input-box">
-		                  		<input type="tel" name="" value="" placeholder="" class="input-text">
+		                  		<input type="tel" name="ua_mobile" id="ua_mobile" value="" placeholder="" class="input-text">
 		                  	</div>
 		                </div>
 						<div class="field">
@@ -72,14 +87,15 @@
 		                <div class="field">
 		                  	<label for="address"><em>*</em>详细地址</label>
 		                  	<div class="input-box">
-		                    	<input type="text" name="address" value="" title="" class="input-text">
+		                    	<input type="text" name="ua_detal" id="ua_detal" value="" title="" class="input-text">
 		                  	</div>
 		                </div>
 
 						<!-- 提交 -->
-						<button type="button" title="提交" class="buttonTj"><span>提交</span></button>
+						<button type="button" title="提交" class="buttonTj" onclick="toAddAddress()"><span>提交</span></button>
 					</div> 
 				</div>
+				
 			</div>
 			
 		</div>

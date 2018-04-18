@@ -23,10 +23,10 @@ public class UserAddressController {
 	public String addAddress(HttpServletRequest request,HttpSession session){
 		String userId = (String) session.getAttribute("userId");
 		if(userId!=null&&userId!=""){
-			String ua_name= request.getParameter("username");
-			String ua_mobile = request.getParameter("phone");
-			String ua_province = request.getParameter("detal");//详细地址
-			String ua_detal = request.getParameter("address");
+			String ua_name= request.getParameter("ua_name");
+			String ua_mobile = request.getParameter("ua_mobile");
+			String ua_detal = request.getParameter("ua_detal");//详细地址
+			String ua_province = request.getParameter("ua_province");
 			String ua_id = UUID.randomUUID().toString();
 			UserAddress userAddress = new UserAddress();
 			userAddress.setUserId(userId);
@@ -39,7 +39,6 @@ public class UserAddressController {
 			userAddressDao.addAdress(userAddress);
 			return "/myAddress";
 		}
-		
 		return "/login";
 	}
 }
