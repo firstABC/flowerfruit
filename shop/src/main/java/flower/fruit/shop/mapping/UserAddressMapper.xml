@@ -15,4 +15,8 @@
 		insert into userAddress(ua_id,userId,ua_name,ua_mobile,ua_province,ua_detal)
 				values(#{ua_id},#{userId},#{ua_name},#{ua_mobile},#{ua_province},#{ua_detal})
 	</insert>
+	
+	<select id="selectAddress" resultMap="addressMap" parameterType="String">
+		select * from userAddress where userId = #{userId}
+	</select>
 </mapper>

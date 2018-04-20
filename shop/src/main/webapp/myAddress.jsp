@@ -20,7 +20,7 @@
 			$.ajax({
 				type:"POST",
 				url:"${pageContext.request.contextPath}/addRess/add",
-				data:"ua_name="+ua_name+"ua_mobile="+ua_mobile+"ua_detal="+ua_detal,
+				data:"ua_name="+ua_name+"&ua_mobile="+ua_mobile+"&ua_detal="+ua_detal,
 				success:function(data){
 					
 				}
@@ -31,7 +31,40 @@
 <body>
 
 	<div class="mainBody">
-		<jsp:include page="header.jsp" flush="true"/>
+		<header>
+			<div class="navHeader">
+				<div class="login">
+					欢迎来到水果鲜花！
+					<div class="myInfoTi">
+						柯志慧
+						<div class="myInfo" style="display: none;">
+							<ul>
+								<li><a href="myInfo.html" title="">基本信息</a></li>
+								<li><a href="myMenu.html" title="">我的订单</a></li>
+								<li><a href="myAddress.html" title="">配送地址</a></li>
+								<li><a href="productComment.html" title="">商品评价</a></li>
+							</ul>
+						</div>
+					</div>
+					
+					<a href="javascript:;">退出</a> 
+				</div>
+				<div class="logo">
+					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
+				</div>
+				<div class="right-contaier">
+					<div class="select">
+		                <form>
+		                    <input class="post" type="button">
+		                    <input class="text" type="text" value="">
+		                </form>
+		            </div>
+		            <div class="cart">
+		            	<a href="viewCart.html"><span>14</span></a> 
+		            </div>
+				</div>
+			</div>
+		</header><!-- /header -->
 
 		<div class="main">
 			<div class="topmenu-user clearfix">

@@ -1,5 +1,6 @@
 package flower.fruit.shop.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -41,4 +42,16 @@ public class UserAddressController {
 		}
 		return "/login";
 	}
+	
+	@RequestMapping("/toMyAddress")
+	public String searchMyaddress(HttpServletRequest request,HttpSession session){
+		String userId = (String) session.getAttribute("userId");
+		if(userId!=null&&userId!=""){
+			List<UserAddress> ltAddress = userAddressDao.selectAddress(userId);
+			request.setAttribute("ltAddress", ltAddress);
+		}
+		return "/myAddress";
+	}
+	
+	
 }
