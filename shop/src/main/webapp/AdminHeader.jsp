@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
 	
 </head>
 <body>

@@ -23,7 +23,8 @@ import flower.fruit.shop.dao.ImagesDao;
 import flower.fruit.shop.domain.GoodsSingle;
 import flower.fruit.shop.domain.Images;
 
-@Controller("gs")
+@Controller
+@RequestMapping("/gs")
 public class GoodsSingleController {
 
 	@Resource

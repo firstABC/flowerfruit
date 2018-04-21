@@ -32,7 +32,7 @@
 	</select>
 	
 	<update id="alterGoodsSingle" parameterType="GoodsSingle">
-		update goodssingle set gs_title=#{gs_title},gs_price=#{gs_price},gs_type=#{gs_type}
+		update goodssingle set gs_title=#{gs_title},gs_price=#{gs_price},gs_type=#{gs_type} where gs_id =#{gs_id}
 	</update>
 	
 	

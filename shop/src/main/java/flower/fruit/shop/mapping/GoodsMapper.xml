@@ -10,6 +10,7 @@
 		<result property="g_recommend" column="g_recommend"/>
 		<result property="g_view" column="g_view"/>
 		<result property="g_status" column="g_status"/>
+		<result property="hot_index" column="hot_index"/>
 		<collection property="ltMage" ofType="flower.fruit.shop.domain.Images">
 			<id property="im_id" column="im_id"/>
 			<result property="pathName" column="pathName"/>
@@ -18,16 +19,16 @@
 	</resultMap>
 	
 	<insert id="publishGoods" parameterType="Goods">
-		insert into goods(g_id,g_title,g_parameter,g_price,g_recommend,g_view,g_status) 
-		         values(#{g_id},#{g_title},#{g_parameter},#{g_price},#{g_recommend},#{g_view},#{g_status})
+		insert into goods(g_id,g_title,g_parameter,g_price,g_recommend,g_view,g_status,hot_index) 
+		         values(#{g_id},#{g_title},#{g_parameter},#{g_price},#{g_recommend},#{g_view},#{g_status},#{hot_index})
 	</insert>
 	
 	<select id="selectGoodsByHot" resultMap="goodsMap">
-		select * from goods g,images i where g.g_id = i.g_id and g.g_status = 1 order by g.g_view limit 5
+		select * from goods g,images i where g.g_id = i.g_id and g.g_status = 1 order by g.hot_index limit 5 
 	</select>
 	
 	<select id="selectGoodsByNew" resultMap="goodsMap">
-		select * from goods g,images i where g.g_id = i.g_id and g.g_status =3 order by g.g_view limit 8
+		select * from goods g,images i where g.g_id = i.g_id and g.g_status =3 order by g.hot_index limit 8
 	</select>
 	
 	<select id="selectGoodsForManage" resultMap="goodsMap">
@@ -39,7 +40,7 @@
 	</select>
 	
 	<update id="alterGoods" parameterType="Goods">
-		update goods set g_title=#{g_title},g_parameter=#{g_parameter},g_recommend=#{g_recommend},g_status=#{g_status},g_price=#{g_price} where g_id = #{g_id}
+		update goods set g_title=#{g_title},g_parameter=#{g_parameter},g_recommend=#{g_recommend},g_status=#{g_status},g_price=#{g_price},hot_index=#{hot_index} where g_id = #{g_id}
 	</update>
 	
 </mapper>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="flower.fruit.shop.domain.UserAddress" %>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -90,11 +92,20 @@
 							<th>手机号</th>
 							<th>地址</th>
 						</tr>
+						<%
+						List<UserAddress> ltAddress = (List<UserAddress>)session.getAttribute("ltAddress");
+						if(ltAddress!=null&&ltAddress.size()>0){
+							for(UserAddress userAddress:ltAddress){
+						%>		
 						<tr>
-							<td>南柯</td>
-							<td>17602150334</td>
-							<td>上海浦东新区塘桥浦建路强生大厦</td>
+							<td><%=userAddress.getUa_name() %></td>
+							<td><%=userAddress.getUa_mobile() %></td>
+							<td><%=userAddress.getUa_province() %> <%=userAddress.getUa_detal() %></td>
 						</tr>
+						<%
+							}
+						}
+						%>
 					</table>
 				</div>
 				<!-- 新建配送地址 -->

@@ -16,10 +16,17 @@ public class Goods {
 	private int g_view;
 	//状态：新品上架 0  推荐 1
 	private int g_status;
+	private int hot_index;
 	private List<Images> ltMage;
 	
 	
 	
+	public int getHot_index() {
+		return hot_index;
+	}
+	public void setHot_index(int hot_index) {
+		this.hot_index = hot_index;
+	}
 	public String getG_price() {
 		return g_price;
 	}

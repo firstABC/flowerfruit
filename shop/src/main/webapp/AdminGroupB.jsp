@@ -18,19 +18,21 @@
     </script>
 </head>
 <body>
-
+	<header>
+			<jsp:include page="AdminHeader.jsp" flush="true"/>
+	</header>
 	<div class="content">
 		<div class="title">
-			<a href="${pageContext.request.contextPath}/AdminUser.jsp" class="active">用户管理</a>
+			<a href="${pageContext.request.contextPath}/AdminUser.jsp">用户管理</a>
 			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage">商品管理</a>
 			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
 			<a href="${pageContext.request.contextPath}/gs/manageA" class="active">组合管理</a>
 		</div>
 		<div class="table">
-        	<a href="AdminGroup.html" class="">水果</a>
+        	<a href="${pageContext.request.contextPath}/gs/manageA" class="">水果</a>
         	<a href="${pageContext.request.contextPath}/gs/manageB" class="edit edit2">鲜花</a>
 
-			<a href="${pageContext.request.contextPath}/gs/toPublish" class="edit editG">新增</a>
+			<a href="${pageContext.request.contextPath}/AdminGroupAdd.jsp" class="edit editG">新增</a>
 			<table cellspacing="0" cellpadding="0" class="tb">
 				<thead>
 					<tr>

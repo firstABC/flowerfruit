@@ -66,7 +66,7 @@
 		    		<ul>
 		    			<li>
 		    				<div class="commentCont clearfix">
-		    					<div class="userImg"><img src="images/userPic.jpg" alt="用户"></div>
+		    					<div class="userImg"><img src="${pageContext.request.contextPath}/images/userPic.jpg" alt="用户"></div>
 		    					<div class="userText">
 		    						<p class="userName">某某某某某</p>
 		    						<p>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
@@ -77,11 +77,11 @@
 		    			</li>
 		    			<li>
 		    				<div class="commentCont clearfix">
-		    					<div class="userImg"><img src="images/userPic.jpg" alt="用户"></div>
+		    					<div class="userImg"><img src="${pageContext.request.contextPath}/images/userPic.jpg" alt="用户"></div>
 		    					<div class="userText">
 		    						<p class="userName">某某某某某</p>
 		    						<p>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
-		    						<p class="zp"><span>追评：</span><img src="images/hot1.jpg" alt=""></p>
+		    						<p class="zp"><span>追评：</span><img src="${pageContext.request.contextPath}/images/hot1.jpg" alt=""></p>
 		    					</div>
 		    				</div>
 		    				<span class="date">2017.12.19</span>

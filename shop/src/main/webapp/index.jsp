@@ -80,21 +80,21 @@
 					if(ltHotG!=null&&ltHotG.size()>=5){
 				%>
 				<div class="popularLeft">
-					<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(0).getG_id() %>><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(0) %>" alt=""></a>
+					<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(0).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(0).getPathName() %>" alt=""></a>
 				</div>
 				<div class="popularRight">
 					<div class="new-product">
-						<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(1).getG_id() %>"><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(1).getLtMage().get(1) %>" alt=""></a>
+						<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(1).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(1).getLtMage().get(0).getPathName() %>" alt=""></a>
 					</div>
 					<ul>
 						<li>
-							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(2).getG_id() %>"><img src="images/hot3.jpg" alt=""></a><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(2) %>" class="hot" alt="热卖">
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(2).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(2).getLtMage().get(0).getPathName() %>" alt=""></a><img src="${pageContext.request.contextPath}/images/hotIcon.png" class="hot" alt="热卖">
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(3).getG_id() %>"><img src="images/hot4.jpg" alt=""></a><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(3) %>" class="hot" alt="热卖">
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(3).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(3).getLtMage().get(0).getPathName() %>" alt=""></a><img src="${pageContext.request.contextPath}/images/hotIcon.png" class="hot" alt="热卖">
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id="+<%=ltHotG.get(4).getG_id() %>"><img src="images/hot5.jpg" alt=""></a><img src=""${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(4) %>" class="hot" alt="热卖">
+							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(4).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(4).getLtMage().get(0).getPathName() %>" alt=""></a><img src="${pageContext.request.contextPath}/images/hotIcon.png" class="hot" alt="热卖">
 						</li>
 					</ul>
 				</div>
@@ -141,8 +141,8 @@
 					</ul>
 		            <a href="javascript:toProductZ();" target="" class="zuhe">开始组合</a>
 				</div>
-				<div class="diyContent">
 				<form action="${pageContext.request.contextPath}/gs/singleOR" method="post" id="gs_form">
+				<div class="diyContent">
 					<!-- 水果 -->
 					<div class="diyGoods">
 						<div class="freshItem">
@@ -155,7 +155,7 @@
 								<li>
 									<input name ="gs_ids" type="checkbox" style="display: none" value="<%=singleA.getGs_id()%>">
 									<a href="javascript:;" title="">
-										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleA.getLtMage().get(0) %>" alt="苹果"></div>
+										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleA.getLtMage().get(0).getPathName() %>" alt="苹果"></div>
 										<div class="freshText"><%=singleA.getGs_title() %></div>
 									</a>
 									<div class="select"><span></span></div>
@@ -179,7 +179,7 @@
 								<li>
 								<input name ="gs_ids" type="checkbox" style="display: none" value="<%=singleB.getGs_id()%>">
 									<a href="javascript:;" title="">
-										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleB.getLtMage().get(0) %>" alt="薰衣草"></div>
+										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleB.getLtMage().get(0).getPathName() %>" alt="薰衣草"></div>
 										<div class="freshText"><%=singleB.getGs_title() %></div>
 									</a>
 									<div class="select"><span></span></div>
@@ -191,8 +191,8 @@
 							</ul>
 						</div>
 					</div>
-				</form>
 				</div>
+				</form>
 			</div>
 
 		</div>

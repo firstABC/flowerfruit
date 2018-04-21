@@ -25,7 +25,7 @@
 			<a href="${pageContext.request.contextPath}/AdminUser.jsp" class="active">用户管理</a>
 			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage">商品管理</a>
 			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
-			<a href="${pageContext.request.contextPath}/gs/manageA" class="active">组合管理</a>
+			<a href="${pageContext.request.contextPath}/gs/manageA" >组合管理</a>
 		</div>
 		<div class="table">
 			<a href="AdminUserAdd.jsp" class="edit">新增</a>

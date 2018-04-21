@@ -35,10 +35,12 @@
     
 </head>
 <body>
-
+	<header>
+			<jsp:include page="AdminHeader.jsp" flush="true"/>
+	</header>
 	<div class="content">
 		<div class="title">
-			<a href="${pageContext.request.contextPath}/AdminUser.jsp" class="active">用户管理</a>
+			<a href="${pageContext.request.contextPath}/AdminUser.jsp" >用户管理</a>
 			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage" class="active">商品管理</a>
 			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
 			<a href="${pageContext.request.contextPath}/gs/manageA" >组合管理</a>
@@ -62,6 +64,18 @@
 	    						<option value="1"> 推荐 </option>
 	    						<option value="2"> 普通 </option>
 	    						<option value="3">新品上架</option>
+	    					</select>
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td width="100">优先级</td>
+	    				<td>
+	    					<select name="hot_index">
+	    						<option value="5"> 第一 </option>
+	    						<option value="4"> 第二 </option>
+	    						<option value="3">第三</option>
+	    						<option value="2">第四</option>
+	    						<option value="1">第五</option>
 	    					</select>
 	    				</td>
 	    			</tr>

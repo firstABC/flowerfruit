@@ -11,12 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import flower.fruit.shop.dao.GoodsDao;
 import flower.fruit.shop.dao.OrdersDao;
+import flower.fruit.shop.dao.UserAddressDao;
 import flower.fruit.shop.domain.Goods;
 import flower.fruit.shop.domain.Orders;
+import flower.fruit.shop.domain.UserAddress;
 
 @Controller
 @RequestMapping("order")
@@ -26,6 +27,8 @@ public class OrdersController {
 	private OrdersDao ordersDao;
 	@Resource
 	private GoodsDao goodsDao;
+	@Resource
+	private UserAddressDao userAddressDao;
 	
 	@RequestMapping("/toAdd")
 	public String addOrder(HttpServletRequest request,HttpSession session){
@@ -75,5 +78,17 @@ public class OrdersController {
 			session.setAttribute("Or_map", map);
 		}
 		return "/AdminOrder";
+	}
+	
+	public String toPay(HttpServletRequest request,HttpSession session){
+		String userId = (String) session.getAttribute("userId");
+		if(userId!=null&&userId!=""){
+			List<UserAddress> ltUA = userAddressDao.selectAddress(userId);
+			if(ltUA!=null&&ltUA.size()>0)
+				session.setAttribute("ltUA", ltUA);
+			return "/payment";
+		}else{
+			return "/login";
+		}
 	}
 }

@@ -8,7 +8,16 @@ public class UserAddress {
 	private String ua_mobile;
 	private String ua_province;
 	private String ua_detal;
+	private String ua_price;
 	
+	
+	
+	public String getUa_price() {
+		return ua_price;
+	}
+	public void setUa_price(String ua_price) {
+		this.ua_price = ua_price;
+	}
 	public String getUa_id() {
 		return ua_id;
 	}

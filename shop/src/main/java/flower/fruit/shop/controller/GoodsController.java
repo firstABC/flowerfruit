@@ -38,6 +38,7 @@ public class GoodsController {
 		String g_parameter = request.getParameter("g_parameter");
 		String g_price = request.getParameter("g_price");
 		int g_status = Integer.parseInt(request.getParameter("g_status"));
+		int hot_index = Integer.parseInt(request.getParameter("hot_index"));
 		String g_recommend = request.getParameter("g_recommend");
 		Goods goods = new Goods();
 		String g_id = UUID.randomUUID().toString();
@@ -47,6 +48,7 @@ public class GoodsController {
 		goods.setG_price(g_price);
 		goods.setG_status(g_status);
 		goods.setG_recommend(g_recommend);
+		goods.setHot_index(hot_index);
 		int isOk = goodsDao.publishGoods(goods);
 		
 		int inMages = 0;
@@ -105,6 +107,7 @@ public class GoodsController {
 		String g_parameter = request.getParameter("g_parameter");
 		String g_price = request.getParameter("g_price");
 		int g_status = Integer.parseInt(request.getParameter("g_status"));
+		int hot_index = Integer.parseInt(request.getParameter("hot_index"));
 		String g_recommend = request.getParameter("g_recommend");
 		Goods goods = new Goods();
 		goods.setG_id(g_id);
@@ -112,6 +115,7 @@ public class GoodsController {
 		goods.setG_parameter(g_parameter);
 		goods.setG_price(g_price);
 		goods.setG_status(g_status);
+		goods.setHot_index(hot_index);
 		goods.setG_recommend(g_recommend);
 		int isOk = goodsDao.alterGoods(goods);
 		if(isOk>0){

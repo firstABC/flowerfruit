@@ -21,6 +21,7 @@
 						alert("修改失败！");
 					}else{
 						alert("修改成功！");
+						window.location.href="${pageContext.request.contextPath}/gs/manageA";
 					}
 	            },
 	            error: function(data) {
@@ -34,31 +35,33 @@
     
 </head>
 <body>
-
+	<header>
+			<jsp:include page="AdminHeader.jsp" flush="true"/>
+	</header>
 	<div class="content">
 		<div class="title">
-			<a href="AdminUser.html">用户管理</a>
-			<a href="AdminProduct.html">商品管理</a>
-			<a href="AdminOrder.html">订单管理</a>
-			<a href="AdminGroup.html" class="active">组合管理</a>
+			<a href="${pageContext.request.contextPath}/AdminUser.jsp">用户管理</a>
+			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage">商品管理</a>
+			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
+			<a href="${pageContext.request.contextPath}/gs/manageA" class="active">组合管理</a>
 		</div>
 		<div class="table">
-			<p>编辑商品</p>
+			<p>编辑单品（水果）</p>
 			<form method="post" enctype="multipart/form-data" id="publish_form">
 				<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
 	    			<tr>
-	    				<input type="hidden" name="gs_id" value="#{goodsA.gs_id}">
+	    				<input type="hidden" name="gs_id" value="${goodsA.gs_id}">
 	    				<td width="100">商品名</td>
-	    				<td><input type="text" name="gs_title" value="#{goodsA.gs_title }"></td>
+	    				<td><input type="text" name="gs_title" value="${goodsA.gs_title }"></td>
 	    			</tr>
 	    			<tr>
 	    				<td width="100">价格</td>
-	    				<td><input type="number" name="gs_price" value="#{goodsA.gs_price }" placeholder=""></td>
+	    				<td><input type="number" name="gs_price" value="${goodsA.gs_price }" placeholder=""></td>
 	    			</tr>
 	    			<tr>
 	    				<td width="100">分类</td>
 	    				<td>
-	    					<select id="gs_type">
+	    					<select id="gs_type" name="gs_type">
 	    						<option value="A">水果</option>
 	    						<option value="B">鲜花</option>
 	    					</select>

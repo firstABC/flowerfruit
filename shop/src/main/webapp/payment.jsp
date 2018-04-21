@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="flower.fruit.shop.domain.UserAddress" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,24 +51,25 @@
 	            </div>
 	            <!-- 收货地址 -->
 	            <div class="adress">
-	            	<h2 class="paymentT">收货地址<a href="myAddress.html">管理收货地址</a></h2>
+	            	<h2 class="paymentT">收货地址<a href="${pageContext.request.contextPath}/addRess/toMyAddress">管理收货地址</a></h2>
 	            	<ul>
+	            	<%
+	            		List<UserAddress> ltUA = (List<UserAddress>)session.getAttribute("ltUA");
+	            		if(ltUA!=null&&ltUA.size()>0){
+	            			for(UserAddress userAddress:ltUA){
+	            	%>
 	            		<li class="active">
-	            			<span class="check"><img src="images/placeIcon.png" alt="地点">&nbsp;寄送至&nbsp;</span>
+	            			<span class="check"><img src="${pageContext.request.contextPath}/images/placeIcon.png" alt="地点">&nbsp;寄送至&nbsp;</span>
 	            			<label>
-		            			<span>安徽省&nbsp;合肥市&nbsp;蜀山区&nbsp;南七街道（柯志慧&nbsp;收）</span>
-		            			<em>15306930123</em>
-		            			<b>5元邮费</b>
+		            			<span><%=userAddress.getUa_province() %>&nbsp;<%=userAddress.getUa_detal() %>&nbsp;（<%=userAddress.getUa_name() %>&nbsp;收）</span>
+		            			<em><%=userAddress.getUa_mobile() %></em>
+		            			<b><%=userAddress.getUa_price()%>元邮费</b>
 		            		</label>
 	            		</li>
-	            		<li>
-	            			<span class="check"><img src="images/placeIcon.png" alt="地点">&nbsp;寄送至&nbsp;</span>
-	            			<label>
-		            			<span>安徽省&nbsp;合肥市&nbsp;蜀山区&nbsp;南七街道（柯志慧&nbsp;收）</span>
-		            			<em>15306930123</em>
-		            			<b>5元邮费</b>
-		            		</label>
-	            		</li>
+	            	<%
+	            			}
+	            		}
+	            	%>
             			<a href="javascript:;" title="" class="adressAdd">新增地址</a>
 	            	</ul>
 	            </div>

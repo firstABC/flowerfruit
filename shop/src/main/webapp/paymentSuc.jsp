@@ -21,7 +21,7 @@
 			<div class="newcart payment">
 	            <div class="paymentSuc">恭喜你，支付成功！</div>
 
-	            <div class="backHome"><a href="index.html">返回首页</a></div>
+	            <div class="backHome"><a href="${pageContext.request.contextPath}/switch/index">返回首页</a></div>
 		    </div>
 
 		</div>

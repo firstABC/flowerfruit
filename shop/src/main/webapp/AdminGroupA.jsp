@@ -18,7 +18,9 @@
     </script>
 </head>
 <body>
-
+	<header>
+			<jsp:include page="AdminHeader.jsp" flush="true"/>
+	</header>
 	<div class="content">
 		<div class="title">
 			<a href="${pageContext.request.contextPath}/AdminUser.jsp">用户管理</a>
@@ -30,7 +32,7 @@
         	<a href="${pageContext.request.contextPath}/gs/manageA" class="edit">水果</a>
         	<a href="${pageContext.request.contextPath}/gs/manageB" class="edit2">鲜花</a>
 
-			<a href="${pageContext.request.contextPath}/gs/toPublish" class="edit editG">新增</a>
+			<a href="${pageContext.request.contextPath}/AdminGroupAdd.jsp" class="edit editG">新增</a>
 			<table cellspacing="0" cellpadding="0" class="tb">
 				<thead>
 					<tr>

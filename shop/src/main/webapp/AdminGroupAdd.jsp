@@ -8,7 +8,6 @@
 	<title>组合管理</title>
 	<link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/jquery-1.10.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
     <script type="text/javascript">
 	  	function toAddSingle(){
 	    	var option = {
@@ -21,6 +20,7 @@
 						alert("发布失败！");
 					}else{
 						alert("发布成功！");
+						window.location.href="${pageContext.request.contextPath}/gs/manageA";
 					}
 	            },
 	            error: function(data) {
@@ -34,16 +34,18 @@
     
 </head>
 <body>
-
+	<header>
+			<jsp:include page="AdminHeader.jsp" flush="true"/>
+	</header>
 	<div class="content">
 		<div class="title">
-			<a href="${pageContext.request.contextPath}/AdminUser.jsp" class="active">用户管理</a>
+			<a href="${pageContext.request.contextPath}/AdminUser.jsp">用户管理</a>
 			<a href="${pageContext.request.contextPath}/goods/toAdminGoodsManage">商品管理</a>
 			<a href="${pageContext.request.contextPath}/order/orderM">订单管理</a>
 			<a href="${pageContext.request.contextPath}/gs/manageA" class="active">组合管理</a>
 		</div>
 		<div class="table">
-			<p>编辑商品</p>
+			<p>发布单品</p>
 			<form method="post" enctype="multipart/form-data" id="publish_form">
 				<table class="tbEdit" width="100%" border="0" cellspacing="0" cellpadding="0">
 	    			<tr>
@@ -57,7 +59,7 @@
 	    			<tr>
 	    				<td width="100">分类</td>
 	    				<td>
-	    					<select id="gs_type">
+	    					<select id="gs_type" name="gs_type">
 	    						<option value="A">水果</option>
 	    						<option value="B">鲜花</option>
 	    					</select>
