@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-04-11 16:58:46
+Date: 2018-04-21 20:21:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,3 @@ CREATE TABLE `useraddress` (
   `ua_province` varchar(255) DEFAULT NULL,
   `ua_detal` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of useraddress
--- ----------------------------

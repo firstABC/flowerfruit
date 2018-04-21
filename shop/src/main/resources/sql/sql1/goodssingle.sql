@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-04-11 16:58:23
+Date: 2018-04-21 20:21:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,9 +22,6 @@ DROP TABLE IF EXISTS `goodssingle`;
 CREATE TABLE `goodssingle` (
   `gs_id` varchar(64) DEFAULT NULL,
   `gs_price` varchar(10) DEFAULT NULL,
-  `gs_type` varchar(2) DEFAULT NULL
+  `gs_type` varchar(2) DEFAULT NULL,
+  `gs_title` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of goodssingle
--- ----------------------------
