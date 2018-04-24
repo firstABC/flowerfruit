@@ -12,7 +12,15 @@ public class Orders {
 	private String user_id;
 	private String ua_id;
 	
+	private Goods goods; 
 	
+	
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
 	public String getUa_id() {
 		return ua_id;
 	}

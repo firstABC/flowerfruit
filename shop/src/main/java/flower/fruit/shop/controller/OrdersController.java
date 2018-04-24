@@ -80,6 +80,7 @@ public class OrdersController {
 		return "/AdminOrder";
 	}
 	
+	@RequestMapping("/toPayment")
 	public String toPay(HttpServletRequest request,HttpSession session){
 		String userId = (String) session.getAttribute("userId");
 		if(userId!=null&&userId!=""){
@@ -87,6 +88,24 @@ public class OrdersController {
 			if(ltUA!=null&&ltUA.size()>0)
 				session.setAttribute("ltUA", ltUA);
 			return "/payment";
+		}else{
+			return "/login";
+		}
+	}
+	
+	@RequestMapping("/toMyOrder")
+	public String myOrder(HttpServletRequest request,HttpSession session){
+		String userId = (String) session.getAttribute("userId");
+		if(userId!=null&&userId!=""){
+			List<Orders> ltOrder =  ordersDao.selectMyOrder(userId);
+			if(ltOrder!=null&&ltOrder.size()>0){
+				for(Orders orders:ltOrder){
+					Goods goods = goodsDao.selectGoodsById(orders.getG_id());
+					orders.setGoods(goods);
+				}
+			}
+			session.setAttribute("ltMyOrder", ltOrder);
+			return "/myMenu";
 		}else{
 			return "/login";
 		}

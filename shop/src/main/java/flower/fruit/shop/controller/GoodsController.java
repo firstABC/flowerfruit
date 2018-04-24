@@ -135,4 +135,5 @@ public class GoodsController {
 		}
 		return "/product";
 	}
+	
 }

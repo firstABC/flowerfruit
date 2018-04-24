@@ -17,7 +17,7 @@ import flower.fruit.shop.dao.UserAddressDao;
 import flower.fruit.shop.domain.UserAddress;
 
 @Controller
-@RequestMapping("/addRess")
+@RequestMapping("addRess")
 public class UserAddressController {
 	
 	@Resource
@@ -55,7 +55,7 @@ public class UserAddressController {
 		String userId = (String) session.getAttribute("userId");
 		if(userId!=null&&userId!=""){
 			List<UserAddress> ltAddress = userAddressDao.selectAddress(userId);
-			request.setAttribute("ltAddress", ltAddress);
+			session.setAttribute("ltAddress", ltAddress);
 		}
 		return "/myAddress";
 	}

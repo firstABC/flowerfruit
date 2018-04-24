@@ -41,7 +41,7 @@
                     	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 					</div>
 					<a href="javascript:;" class="cart">加入购物车</a>
-					<a href="${pageContext.request.contextPath}/payment.jsp" class="add_link">立即支付</a>
+					<a href="${pageContext.request.contextPath}/goods/toPayment" class="add_link">立即支付</a>
 					<div class="note">
 			            <h3>规格参数<span>composition</span></h3>
 			            <p>${goodsDetal.g_parameter }</p>

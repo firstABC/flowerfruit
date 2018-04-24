@@ -52,7 +52,7 @@
 		</header><!-- /header -->
 
 		<div class="main">
-			<form id="form_login" name="form_login" method="get" action="login">
+			<form id="form_login" name="form_login" method="get" action="${pageContext.request.contextPath}/login">
 			<div class="account-login">
 				<div class="u-container">
 					<h1 class="m-login-til">欢迎回来 <span>还不是会员？<a href="register.jsp">立即注册</a></span></h1>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="flower.fruit.shop.domain.Orders" %>
+<%@ page import="flower.fruit.shop.domain.Goods" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +25,8 @@
 			<div class="topmenu-user clearfix">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/getUserInfoById?userId=${userId}" title="">基本信息</a></li>
-					<li><a href="${pageContext.request.contextPath}/myMenu.jsp" title="">我的订单</a></li>
-					<li><a href="${pageContext.request.contextPath}/myAddress.jsp" title="">配送地址</a></li>
+					<li class="active"><a href="${pageContext.request.contextPath}/order/toMyOrder" title="">我的订单</a></li>
+					<li><a href="${pageContext.request.contextPath}/addRess/toMyAddress" title="">配送地址</a></li>
 					<li><a href="${pageContext.request.contextPath}/productComment.jsp" title="">商品评价</a></li>
 				</ul>
 			</div>
@@ -49,18 +52,24 @@
 							<th>交易状态</th>
 							<th>交易操作</th>
 						</tr>
+						<%
+							List<Orders> ltMyOrder = (List<Orders>)session.getAttribute("ltMyOrder");
+							if(ltMyOrder!=null&&ltMyOrder.size()>0){
+								for(Orders orders:ltMyOrder){
+									Goods goods = orders.getGoods();
+						%>
 						<tr>
 							<td class="cpImg">
-								<img src="images/hot5.jpg" alt="">
-								<p>水果鲜花水果鲜花水果鲜花水果鲜花</p>
+								<img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName() %>" alt="">
+								<p><%=goods.getG_title() %></p>
 							</td>
-							<td>69.00</td>
-							<td>1</td>
+							<td><%=goods.getG_price() %></td>
+							<td><%=orders.getOr_number() %></td>
 							<td>
 								<a href="javascript:;" title="">退换货</a>
 								<a href="javascript:;" title="">投诉商家</a>
 							</td>
-							<td>69.00</td>
+							<td><%=orders.getOr_price() %></td>
 							<td class="cz">
 								<p>物流运输中</p>
 								<p>查看物流</p>
@@ -70,51 +79,10 @@
 								<a href="javascript:;" title="">确认收货</a>
 							</td>
 						</tr>
-
-						<tr>
-							<td class="cpImg">
-								<img src="images/hot5.jpg" alt="">
-								<p>水果鲜花水果鲜花水果鲜花水果鲜花</p>
-							</td>
-							<td>69.00</td>
-							<td>1</td>
-							<td>
-								<a href="javascript:;" title="">申请售后</a>
-								<a href="javascript:;" title="">投诉商家</a>
-							</td>
-							<td>69.00</td>
-							<td class="cz">
-								<p>交易成功</p>
-								<p>查看物流</p>
-								<a href="javascript:;" title="">订单详情</a>
-							</td>
-							<td>
-								<a href="productPj.html" title="">评价</a>
-								<a href="product.html" title="">再次购买</a>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="cpImg">
-								<img src="images/hot5.jpg" alt="">
-								<p>水果鲜花水果鲜花水果鲜花水果鲜花</p>
-							</td>
-							<td>69.00</td>
-							<td>1</td>
-							<td>
-								<a href="javascript:;" title="">申请售后</a>
-								<a href="javascript:;" title="">投诉商家</a>
-							</td>
-							<td>69.00</td>
-							<td class="cz">
-								<p>交易成功</p>
-								<p>查看物流</p>
-								<a href="javascript:;" title="">订单详情</a>
-							</td>
-							<td>
-								<a href="productPj.html" title="">追加评价</a>
-							</td>
-						</tr>
+						<%
+								}	
+							}
+						%>
 					</table>
 			</div>
 			

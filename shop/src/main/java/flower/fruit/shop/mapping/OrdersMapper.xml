@@ -21,4 +21,8 @@
 	<select id="selectAll" resultMap="ordersMap">
 		select * from ordersu
 	</select>
+	
+	<select id="selectMyOrder" parameterType="String" resultMap="ordersMap">
+		select * from ordersu where user_id = #{userId}
+	</select>
 </mapper>
