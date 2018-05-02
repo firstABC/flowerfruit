@@ -95,17 +95,17 @@ public class CommentController{
 		@RequestMapping(value = "/addConsult", method = RequestMethod.POST) 
 		public  @ResponseBody String addConsult(@RequestParam("userId")String userId, 
 				@RequestParam("goodsId")String goodsId,
-				@RequestParam("commentMsg")String consultMsg,
+				@RequestParam("commentMsg")String commentMsg,
 				@RequestParam("commentType")String commentType){
 			if(userId != null && userId != ""
 					&&goodsId != null && goodsId != ""
-					&&consultMsg != null && consultMsg != ""){
+					&&commentMsg != null && commentMsg != ""){
 				//设置id
 				String consultVOIdStr = UUID.randomUUID().toString();
 				//设置评论时间
 				Date date = new Date();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				CommentVO commenttVO = new CommentVO(consultVOIdStr,userId,goodsId,consultMsg,commentType,sdf.format(date),"0");
+				CommentVO commenttVO = new CommentVO(consultVOIdStr,userId,goodsId,commentMsg,commentType,sdf.format(date),"0");
 				commentDao.addComment(commenttVO);
 				return "success";
 			}else{

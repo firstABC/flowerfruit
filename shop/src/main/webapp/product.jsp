@@ -62,32 +62,9 @@
 		    		<div class="line"></div>
 		    		<p>用户评价</p>
 		    	</div>
-		    	<div class="commentNote clearfix">
-		    		<ul>
-		    			<li>
-		    				<div class="commentCont clearfix">
-		    					<div class="userImg"><img src="${pageContext.request.contextPath}/images/userPic.jpg" alt="用户"></div>
-		    					<div class="userText">
-		    						<p class="userName">某某某某某</p>
-		    						<p>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
-		    						<p class="zp"><span>追评：</span>追评内容追评内容追评内容追评内容追评内容追评内容</p>
-		    					</div>
-		    				</div>
-		    				<span class="date">2017.12.19</span>
-		    			</li>
-		    			<li>
-		    				<div class="commentCont clearfix">
-		    					<div class="userImg"><img src="${pageContext.request.contextPath}/images/userPic.jpg" alt="用户"></div>
-		    					<div class="userText">
-		    						<p class="userName">某某某某某</p>
-		    						<p>评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</p>
-		    						<p class="zp"><span>追评：</span><img src="${pageContext.request.contextPath}/images/hot1.jpg" alt=""></p>
-		    					</div>
-		    				</div>
-		    				<span class="date">2017.12.19</span>
-		    			</li>
-		    		</ul>
-		    	</div>
+		    	<div class="commentNote clearfix" id="plList">
+					
+				</div>
 			</div>
 
 		</div>
@@ -118,7 +95,65 @@
 		      </div>
 		</footer>
 	</div>
-
+	<script type="text/javascript">
+	$(document).ready(function () {
+    	//加载商品评论列表
+    	showConsultList();
+	});
+	//获取用户评价列表  
+	function showConsultList(){
+		var goodsId = $("#g_id").val();
+		$('.plList').empty();
+		var currentPage=$('#currentPage').val();
+		$.ajax({
+			url:'${pageContext.request.getContextPath()}/con/getConsultByGoods',
+			async: false,
+			type:'get',
+			data:{
+				goodsId:goodsId,
+				currentPage:currentPage
+			},
+			dataType:'json',
+			success:function(data){
+				/* var dataArr=JSON.parse(data); */
+				$('#maxPage').val(data.maxPage);	
+				var consultVOArr = data.data;
+				console.log(consultVOArr);
+				$('#plList').append("<ul>");
+				for(var i=0;i<consultVOArr.length;i++){
+					var consultVO=consultVOArr[i];
+					$('#plList').append("<li><div class='commentCont clearfix'><div class='userImg'><img src='images/userPic.jpg' alt='用户'></div>"
+							+"<div class='userText'><p class='userName'>"+consultVO.userName+"</p><p>"+consultVO.consultMsg
+							+"</p></div></div><span class='date'>"+consultVO.consultDate+"</span></li>");
+				}
+				$('#plList').append("</ul>");
+				//循环完之后再加上分页 
+				if(consultVOArr!=null && consultVOArr!=''){
+					$('#plList').append("<div class='pagination'>"+
+							"<a href='javascript:void(0)' onclick='nextPage()' class='morePj'>查看更多</a>"
+							+$('#currentPage').val()+"/共"+$('#maxPage').val()+"页"  
+							+"</div>");
+					
+				}else{
+					$('#plList').append("<p class='consultAdvice'>暂无评价~</P>");
+				} 
+			}
+		});
+	}
+		
+		//评论分页功能 
+		//下一页
+		function nextPage(){
+			var current=$('#currentPage').val();
+			var maxPage=$('#maxPage').val();
+			if(current==maxPage){
+				showConsultList();
+			}else if(current<maxPage){
+				$('#currentPage').val(parseInt(current)+parseInt(1));
+				showConsultList();
+			}
+		}
+	</script>
 
 </body>
 </html>

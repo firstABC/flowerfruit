@@ -76,7 +76,8 @@
 								<a href="javascript:;" title="">订单详情</a>
 							</td>
 							<td>
-								<a href="javascript:;" title="">评价</a>
+								<!-- <a href="javascript:;" title="">评价</a> -->
+								<a href="javascript:toShow('<%=goods.getG_id() %>');" class="plNow">立即评论</a>
 							</td>
 						</tr>
 						<%
@@ -84,6 +85,20 @@
 							}
 						%>
 					</table>
+					
+					<!-- 写评价 -->
+					<div class="protocol-warp formAddress" id="plbox">
+						<div class="form-list">
+							<h2>写评价<span class="closeModel"></span></h2>
+							<input type="text" name="userId" id="uId" value="${userId }" class="focus">
+							<input type="text" name="goodsId" id="gId" class="focus" hidden="hidden" value="">
+							<div class="writePj">
+								<textarea name="commentMsg" id="commentMsg" placeholder="请输入评论内容"></textarea>
+							</div>
+							<button type="button" title="提交" class="buttonTj" onclick="javascript:addConsult()"><span>提交</span></button>
+						
+						</div>
+					</div>
 			</div>
 			
 		</div>
@@ -115,10 +130,44 @@
 		</footer>
 	</div>
 
-
+	
+		<!-- style="display:none" -->
+		
+		
 	<script type="text/javascript">
+	
+	
+	function toShow(g_id){
+		$("#gId").val(g_id)
+		$('#plbox').show();
+	}
+	function addConsult(){
+		var userId = $("#uId").val();
+		var goodsId = $("#gId").val();
+		var commentMsg = $("#commentMsg").val();
+		var a = $.ajax({
+			url:'${pageContext.request.getContextPath()}/com/addConsult',
+    		type :'post',
+    		data:{
+    			userId:userId,
+    			goodsId:goodsId,
+    			commentMsg:commentMsg,
+    			commentType:"1"
+    		}, 
+    		success:function(data){
+    			if(data == 'error'){
+    				alert("评论失败！");
+    			}else{
+    				$('#plbox').hide();
+    				alert("评论成功！");
+    			}
+    		}
+		});
+		
+	}
 		$(function(){
-		    $('.login .myInfoTi').hover(function(){
+			
+		    /* $('.login .myInfoTi').hover(function(){
 		    	$('.myInfo').fadeToggle();
 		    })
 		    // 城市三级联动
@@ -143,7 +192,7 @@
 		            var thisdom = $("."+$(".pick-area-dom").val());//返回的是调用这个插件的元素pick-area，$(".pick-area-dom").val()的值是该元素的另一个class名，这个class名在dom结构中是唯一的，不会有重复，可以通过这个class名来识别这个pick-area
 		            thisdom.next().val($(".pick-area-hidden").val());//$(".pick-area-hidden").val()是页面中隐藏域的值，存放着每次选中一个省、市或者县的时候，当前文本存放的省市县的最新值，每点击一次下拉框里的li，这个值就会立即更新
 		        }
-		    });
+		    }); */
 		})
 	</script>
 
