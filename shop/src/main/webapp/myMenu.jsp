@@ -76,7 +76,7 @@
 								<a href="javascript:;" title="">订单详情</a>
 							</td>
 							<td>
-								<a href="javascript:;" title="">确认收货</a>
+								<a href="javascript:;" title="">评价</a>
 							</td>
 						</tr>
 						<%

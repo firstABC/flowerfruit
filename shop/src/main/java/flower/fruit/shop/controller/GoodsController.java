@@ -23,7 +23,7 @@ import flower.fruit.shop.domain.Goods;
 import flower.fruit.shop.domain.Images;
 
 @Controller
-@RequestMapping("/goods") 
+@RequestMapping("goods") 
 public class GoodsController {
 
 	@Resource

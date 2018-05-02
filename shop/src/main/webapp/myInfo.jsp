@@ -25,7 +25,7 @@
 			<div class="topmenu-user clearfix">
 				<ul>
 					<li  class="active"><a href="${pageContext.request.contextPath}/getUserInfoById?userId=${userId}" title="">基本信息</a></li>
-					<li><a href="${pageContext.request.contextPath}/myMenu.jsp" title="">我的订单</a></li>
+					<li><a href="${pageContext.request.contextPath}/order/toMyOrder" title="">我的订单</a></li>
 					<li><a href="${pageContext.request.contextPath}/addRess/toMyAddress" title="">配送地址</a></li>
 					<li><a href="${pageContext.request.contextPath}/productComment.jsp" title="">商品评价</a></li>
 				</ul>

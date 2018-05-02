@@ -18,57 +18,7 @@
 
 	<div class="mainBody">
 		<header>
-			<div class="navHeader">
-				<div class="login">
-					欢迎来到水果鲜花！
-					<a href="login.html">登录</a>
-					<a href="register.html">注册</a> 
-				</div>
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="水果鲜花"></a>
-				</div>
-				<div class="right-contaier">
-					<div class="select">
-		                <form>
-		                    <input class="post" type="button">
-		                    <input class="text" type="text" value="">
-		                </form>
-		            </div>
-		            <div class="cart">
-		            	<a href="viewCart.html"><span>14</span></a> 
-		            </div>
-				</div>
-			</div>
-			<div class="show_table">
-				<div class="topmenu clearfix">
-					<ul>
-						<li>
-							<a href="index.html" class="til">
-								<h3>Home</h3>
-								<h4>首页</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#popular" class="til">
-								<h3>Hot recommend</h3>
-								<h4>热门推荐</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#freshUp" class="til">
-								<h3>What's new</h3>
-								<h4>新鲜上架</h4>
-							</a>
-						</li>
-						<li>
-							<a href="index.html#diy" class="til">
-								<h3>Do it youself</h3>
-								<h4>自己搭配</h4>
-							</a>
-						</li>
-					</ul>
-				</div>	
-			</div>
+			<jsp:include page="header.jsp" flush="true"/>
 		</header><!-- /header -->
 
 		<div class="main">

@@ -153,7 +153,7 @@
 									for(GoodsSingle singleA:ltA){
 							%>
 								<li>
-									<input name ="gs_ids" type="checkbox" style="display: none" value="<%=singleA.getGs_id()%>">
+									<input name ="gs_ids"  type="checkbox" style="display: none" value="<%=singleA.getGs_id()%>">
 									<a href="javascript:;" title="">
 										<div class="img"><img src="${pageContext.request.contextPath}/upload/<%=singleA.getLtMage().get(0).getPathName() %>" alt="苹果"></div>
 										<div class="freshText"><%=singleA.getGs_title() %></div>
@@ -250,6 +250,7 @@
 		    	if (!$(this).hasClass('active')) {
 		    		$('.diyTitle li').removeClass('active');
 		    		$(this).addClass('active');
+		    	//	$('.diyTitle li input').attr("checked","checked");
 		    	}
 				var aa = $(this).index();
 
