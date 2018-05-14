@@ -33,7 +33,7 @@
 						<th>商品名</th>
 						<th>收货人</th>
 						<th>收货人联系方式</th>
-						<th>操作</th>
+						<!-- <th>操作</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -50,7 +50,7 @@
 						<td><%=orders.getUa_name() %></td>
 						<td><%=orders.getUa_mobile() %></td>
 						
-						<td><a href="javascript:;" title="">编辑</a></td>
+						<!-- <td><a href="javascript:;" title="">编辑</a></td> -->
 					</tr>
 				<%
 						}
