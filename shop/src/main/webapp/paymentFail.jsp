@@ -15,8 +15,9 @@
 </head>
 <body>
 	<div class="mainBody">
-		<jsp:include page="header.jsp" flush="true"/>
-		
+		<header>
+			<jsp:include page="header.jsp" flush="true"/>
+		</header><!-- /header -->
 		<div class="main">
 			<div class="newcart payment">
 	            <div class="paymentSuc">支付失败，请稍后重试！</div>

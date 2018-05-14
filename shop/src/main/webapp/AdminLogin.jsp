@@ -16,10 +16,16 @@
 <body>
 
 	<div class="mainBody">
-		<header>
-			<jsp:include page="AdminHeader.jsp" flush="true"/>
-		</header><!-- /header -->
-
+		<div class="navHeader">        
+           	<div class="login" id="index">
+            	欢迎来到水果鲜花-后台管理！
+          		<a href="${pageContext.request.contextPath}/AdminRegister.jsp">注册</a>                
+                <a href="${pageContext.request.contextPath}/AdminLogin.jsp">登录</a></li>
+			</div>
+			<div class="logo">
+				<a href="index.jsp"><img src="${pageContext.request.contextPath}/images/logo.png" alt="水果鲜花"></a>
+			</div>
+	</div>
 		<div class="main">
 			<div class="account-login">
 				<div class="u-container">

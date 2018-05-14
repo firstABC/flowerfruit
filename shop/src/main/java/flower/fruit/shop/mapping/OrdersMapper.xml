@@ -13,14 +13,31 @@
 		<result property="ua_id" column="ua_id"/>
 	</resultMap>
 	
+	<resultMap id="ordersMap2" type="OrdersVO" >
+		<id property="or_id" column="or_id"/>
+		<result property="g_id" column="g_id"/>
+		<result property="or_number" column="or_number"/>
+		<result property="or_date" column="or_date"/>
+		<result property="or_price" column="or_price"/>
+		<result property="or_status" column="or_status"/>
+		<result property="user_id" column="user_id"/>
+		<result property="ua_id" column="ua_id"/>
+		<result property="g_title" column="g_title"/>
+		<result property="ua_name" column="ua_name"/>
+		<result property="ua_mobile" column="ua_name"/>
+	</resultMap>
+	
 	<insert id="addOrder" parameterType="Orders">
 		insert into ordersu(or_id,g_id,or_number,or_date,or_price,or_status,user_id,ua_id)
 		values(#{or_id},#{g_id},#{or_number},#{or_date},#{or_price},#{or_status},#{user_id},#{ua_id})
 	</insert>
 	
-	<select id="selectAll" resultMap="ordersMap">
-		select * from ordersu
-	</select>
+	<select id="selectAll" resultMap="ordersMap2">
+		<!-- select * from ordersu -->
+		select o.*,g.g_title,ua.ua_name,ua.ua_mobile from ordersu o 
+		LEFT JOIN useraddress ua on o.user_id = ua.userId and o.ua_id = ua.ua_id
+		LEFT JOIN goods g on o.g_id = g.g_id
+</select>
 	
 	<select id="selectMyOrder" parameterType="String" resultMap="ordersMap">
 		select * from ordersu where user_id = #{userId}

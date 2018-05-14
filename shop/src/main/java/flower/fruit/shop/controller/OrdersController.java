@@ -1,5 +1,7 @@
 package flower.fruit.shop.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -17,6 +19,7 @@ import flower.fruit.shop.dao.OrdersDao;
 import flower.fruit.shop.dao.UserAddressDao;
 import flower.fruit.shop.domain.Goods;
 import flower.fruit.shop.domain.Orders;
+import flower.fruit.shop.domain.OrdersVO;
 import flower.fruit.shop.domain.UserAddress;
 
 @Controller
@@ -35,11 +38,17 @@ public class OrdersController {
 		Map map = new ConcurrentHashMap();
 		String g_id = request.getParameter("g_id");
 		Double g_price = Double.parseDouble(request.getParameter("g_price"));
+		String ua_id = request.getParameter("ua_id");
 		//int or_number = Integer.parseInt(request.getParameter("or_number"));
+		//int or_number = 1;
+		String or_numberStr =request.getParameter("or_number");
 		int or_number = 1;
-		Double or_price = g_price;
+		if(or_numberStr != null&&or_numberStr !=""){
+			or_number = Integer.parseInt(or_numberStr);
+		}
+		Double or_price = g_price*or_number;
 		for(int i=1;i<or_number;i++){
-			or_price=g_price.sum(g_price, g_price);
+			//or_price=g_price.sum(g_price, g_price);
 		}
 		String userId = (String) session.getAttribute("userId");
 	
@@ -50,10 +59,10 @@ public class OrdersController {
 		orders.setOr_id(UUID.randomUUID().toString());
 		orders.setOr_number(or_number);
 		orders.setOr_status("A");
-		orders.setOr_date("11-11-11");
-		
-		
-		orders.setUa_id("111");
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		orders.setOr_date(sdf.format(date));
+		orders.setUa_id(ua_id);
 		
 		
 		int isOk = ordersDao.addOrder(orders);
@@ -66,17 +75,17 @@ public class OrdersController {
 	
 	@RequestMapping("/orderM")
 	public String selectAllOrder(HttpServletRequest request,HttpSession session){
-		List<Orders> ltOr = ordersDao.selectAll();
-		Map map = new ConcurrentHashMap<String,String>();
-		if(ltOr!=null&&ltOr.size()>0){
+		List<OrdersVO> ltOr = ordersDao.selectAll();
+		//Map map = new ConcurrentHashMap<String,String>();
+		//if(ltOr!=null&&ltOr.size()>0){
 			session.setAttribute("ltOr", ltOr);
-			for(Orders order:ltOr){
+			/*for(Orders order:ltOr){
 				String g_id = order.getG_id();
 				Goods goods = goodsDao.selectGoodsById(g_id);
 				map.put(order.getOr_id(), goods.getG_title());
 			}
-			session.setAttribute("Or_map", map);
-		}
+			session.setAttribute("Or_map", map);*/
+		//}
 		return "/AdminOrder";
 	}
 	

@@ -42,6 +42,7 @@ if(userName != null&&userName !=""){
 	$('#success').show();
 }else{
 	$('#success').hide();
+	window.location.href="${pageContext.request.getContextPath()}/AdminLogin.jsp";//需要跳转的地址 
 }
 </script>
 </html>

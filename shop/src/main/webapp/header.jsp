@@ -29,7 +29,7 @@
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/getUserInfoById?userId=${userId}" title="">基本信息</a></li>
 							<li class="active"><a href="${pageContext.request.contextPath}/order/toMyOrder" title="">我的订单</a></li>
-							<li><a href="${pageContext.request.contextPath}/myAddress.jsp" title="">配送地址</a></li>
+							<li><a href="${pageContext.request.contextPath}/addRess/toMyAddress" title="">配送地址</a></li>
 							<li><a href="${pageContext.request.contextPath}/productComment.jsp" title="">商品评价</a></li>
 						</ul>
 					</div>
@@ -47,9 +47,9 @@
 	                    <input class="text" type="text" value="">
 	                </form>
 	            </div>
-	            <div class="cart">
+	            <%-- <div class="cart">
 	            	<a href="${pageContext.request.contextPath}/viewCart.jsp"><span>14</span></a> 
-	            </div>
+	            </div> --%>
 			</div>
 	</div>
 </body>

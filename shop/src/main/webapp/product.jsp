@@ -40,7 +40,7 @@
 					<div class="size amount_box">
                     	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 					</div>
-					<a href="javascript:;" class="cart">加入购物车</a>
+					<!-- <a href="javascript:;" class="cart">加入购物车</a> -->
 					<a href="${pageContext.request.contextPath}/order/toPayment" class="add_link">立即支付</a>
 					<div class="note">
 			            <h3>规格参数<span>composition</span></h3>

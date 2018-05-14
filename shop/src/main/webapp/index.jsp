@@ -73,34 +73,44 @@
 			</div>
 
 			<!-- 热门推荐 -->
-			<div class="popular" id="popular">
+			<div class="freshUp" id="popular">
 				<h1>热门推荐&nbsp;Hot recommend</h1>
+				<div class="freshItem">
+				<ul>
 				<%
 					List<Goods> ltHotG = (List<Goods>)session.getAttribute("ltHotG");
-					if(ltHotG!=null&&ltHotG.size()>=5){
+					if(ltHotG!=null&&ltHotG.size()>0){
+						for(Goods goods: ltHotG){
 				%>
-				<div class="popularLeft">
-					<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(0).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(0).getLtMage().get(0).getPathName() %>" alt=""></a>
-				</div>
-				<div class="popularRight">
-					<div class="new-product">
+				<!-- <div class="popularLeft">
+					
+				</div> -->
+				 
+					<%-- <div class="new-product">
 						<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(1).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(1).getLtMage().get(0).getPathName() %>" alt=""></a>
-					</div>
-					<ul>
+					</div> --%>
+					
 						<li>
-							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(2).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(2).getLtMage().get(0).getPathName() %>" alt=""></a><img src="${pageContext.request.contextPath}/images/hotIcon.png" class="hot" alt="热卖">
-						</li>
-						<li>
+						<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=goods.getG_id() %>">
+							<img src="${pageContext.request.contextPath}/upload/<%=goods.getLtMage().get(0).getPathName() %>" alt="">
+							<div class="freshText"><%=goods.getG_title() %></div>
+						</a>
+							<%-- <a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(2).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(2).getLtMage().get(0).getPathName() %>" alt=""></a><img src="${pageContext.request.contextPath}/images/hotIcon.png" class="hot" alt="热卖">
+						 --%>
+						 </li>
+						<%-- <li>
 							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(3).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(3).getLtMage().get(0).getPathName() %>" alt=""></a><img src="${pageContext.request.contextPath}/images/hotIcon.png" class="hot" alt="热卖">
 						</li>
 						<li>
 							<a href="${pageContext.request.contextPath}/goods/toDetal?g_id=<%=ltHotG.get(4).getG_id() %>"><img src="${pageContext.request.contextPath}/upload/<%=ltHotG.get(4).getLtMage().get(0).getPathName() %>" alt=""></a><img src="${pageContext.request.contextPath}/images/hotIcon.png" class="hot" alt="热卖">
-						</li>
-					</ul>
-				</div>
+						</li> --%>
+					 
 				<%
-				}
+					}
+						}
 				%>
+				</ul>
+				</div>
 			</div>
 			
 			<!-- 新鲜上架 -->

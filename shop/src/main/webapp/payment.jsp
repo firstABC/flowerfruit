@@ -17,6 +17,10 @@
 	<!-- 订单支付 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/carts.js"></script>
 	<script type="text/javascript">
+		function checkForm(){
+			
+			
+		}
 		function toCreateOrder(){
 			/* var option = {
 		    		url:'${pageContext.request.getContextPath()}/order/toAdd',
@@ -35,17 +39,24 @@
 		                alert(JSON.stringify(data) + "--修改失败,请刷新后重试");
 		            }
 		         }; */
-		   	 	$("#publish_form").submit();
+			if($('.adress>ul>li').hasClass("active")){
+				$("#publish_form").submit();
+			}else{
+				alert("请选择收货地址");
+			}
+		   	 	
 		   	// 	return false;
 		}
 	</script>
 </head>
 <body>
 	<div class="mainBody">
-		<jsp:include page="header.jsp" flush="true"/>
-		
+		<header>
+			<jsp:include page="header.jsp" flush="true"/>
+		</header><!-- /header -->
 		<div class="main">
 			<div class="newcart payment">
+			<form action="${pageContext.request.contextPath}/order/toAdd" method="post" id="publish_form" onSubmit="return checkForm()">
 				<div class="page-title">
 	                <h1>支付&nbsp;payment</h1>
 	            </div>
@@ -57,20 +68,27 @@
 	            		List<UserAddress> ltUA = (List<UserAddress>)session.getAttribute("ltUA");
 	            		if(ltUA!=null&&ltUA.size()>0){
 	            			for(UserAddress userAddress:ltUA){
+	            			//UserAddress userAddress = ltUA.get(0);
 	            	%>
-	            		<li class="active">
+	            		
+	            		<li>
 	            			<span class="check"><img src="${pageContext.request.contextPath}/images/placeIcon.png" alt="地点">&nbsp;寄送至&nbsp;</span>
 	            			<label>
+	            			<input name="ua_id" id="ua_id" type="text" value="<%=userAddress.getUa_id() %>" hidden="hidden">
+	            				
 		            			<span><%=userAddress.getUa_province() %>&nbsp;<%=userAddress.getUa_detal() %>&nbsp;（<%=userAddress.getUa_name() %>&nbsp;收）</span>
-		            			<em><%=userAddress.getUa_mobile() %></em>
-		            			<b><%=userAddress.getUa_price()%>元邮费</b>
+		            			<em>联系方式:<%=userAddress.getUa_mobile() %></em>
+		            			<b><%-- <%=userAddress.getUa_price()%> --%>5元邮费</b>
 		            		</label>
 	            		</li>
 	            	<%
-	            			}
 	            		}
+	            	}else{
 	            	%>
-            			<a href="javascript:;" title="" class="adressAdd">新增地址</a>
+            			<a href="javascript:;" title="" class="adressAdd">添加地址</a>
+            		<%
+	            	}
+            		%>
 	            	</ul>
 	            </div>
 	            <!-- 商品 -->
@@ -78,7 +96,7 @@
 	            	<h2 class="paymentT">商品信息</h2>
 	            	<div class="new-pro-list">
 		            	 <div class="cartBox">
-		            	 <form action="${pageContext.request.contextPath}/order/toAdd" method="post" id="publish_form">
+		            	 
 				            <table class="order_content" cellpadding="0" cellspacing="0" border="0">
 				            	<tr class="no-border-top">
 				            		<th>
@@ -118,7 +136,7 @@
 				                    </td>
 				                </tr>
 				            </table>
-				            </form>
+				           
 				        </div>
 	            	</div>
 	            	<!-- 结账 -->
@@ -129,6 +147,7 @@
 	                      <a class="new-cart-button" href="javascript:toCreateOrder();">立即结算</a>
 	                    </div>
 	                </div>
+	            </form>
 	            </div>
 		    </div>
 
@@ -172,8 +191,6 @@
 				</div>
 			</div>
 		</div>
-
-	</div>
 	
 
 	<script type="text/javascript">
@@ -187,6 +204,7 @@
 				if (!$(this).hasClass('active')) {
 					$('.adress>ul>li').removeClass('active');
 					$(this).addClass('active');
+					
 				}
 			})
 		    // 新增收货地址

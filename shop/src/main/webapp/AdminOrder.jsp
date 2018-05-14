@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="flower.fruit.shop.domain.Orders" %>
+<%@ page import="flower.fruit.shop.domain.OrdersVO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,17 +38,18 @@
 				</thead>
 				<tbody>
 				<%
-					List<Orders> ltOr = (List<Orders>)session.getAttribute("ltOr");
-					Map map = (Map)session.getAttribute("Or_map");
+					List<OrdersVO> ltOr = (List<OrdersVO>)session.getAttribute("ltOr");
+					//Map map = (Map)session.getAttribute("Or_map");
 					if(ltOr!=null&&ltOr.size()>0){
-						for(Orders orders : ltOr){
+						for(OrdersVO orders : ltOr){
 				%>
 				
 					<tr>
 						<td><%=orders.getOr_id() %></td>
-						<td><%=map.get(orders.getOr_id()) %></td>
-						<td>马雪</td>
-						<td>15693256431</td>
+						<td><%=orders.getG_title() %></td>
+						<td><%=orders.getUa_name() %></td>
+						<td><%=orders.getUa_mobile() %></td>
+						
 						<td><a href="javascript:;" title="">编辑</a></td>
 					</tr>
 				<%

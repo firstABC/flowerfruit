@@ -44,7 +44,16 @@ public class UserController{
 		//private User user;
 		
 		@RequestMapping(value = "/login", method = RequestMethod.GET) 
-
+		/**
+		 * 登录方法
+		 * @param request
+		 * @param response
+		 * @param userName 用户名
+		 * @param userPwd 密码
+		 * @return 请求forward:/switch/index(首页）
+		 * 			login.jsp
+		 * @throws Exception
+		 */
 		public String login(HttpServletRequest request,HttpServletResponse response,  
 		@RequestParam("userName")String userName, @RequestParam("userPwd")String userPwd) throws Exception { 
 			HttpSession session = request.getSession();
@@ -66,8 +75,8 @@ public class UserController{
 		public String out(HttpServletRequest request) throws Exception{
 			HttpSession session = request.getSession();
 			session.invalidate();
-			//return "forward:/switch/toIdex";
-			return "index";
+			return "forward:/switch/toIdex";
+			//return "index";
 		}
 		@RequestMapping("/register")
 		public String register(HttpServletRequest request,HttpServletResponse response,User user){
@@ -92,8 +101,8 @@ public class UserController{
 					userDao.addUser(user);
 					session.setAttribute("userName", user.getUserName());
 					session.setAttribute("userId", user.getUserId());
-					//return "forward:/switch/toIdex";
-					return "index";
+					return "forward:/switch/toIdex";
+					//return "index";
 				}
 			}else{
 				request.setAttribute("msg", "注册失败!");

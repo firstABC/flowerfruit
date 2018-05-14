@@ -15,13 +15,15 @@
 </head>
 <body>
 	<div class="mainBody">
-		<jsp:include page="header.jsp" flush="true"/>
-		
+		<header>
+			<jsp:include page="header.jsp" flush="true"/>
+		</header><!-- /header -->
 		<div class="main">
 			<div class="newcart payment">
 	            <div class="paymentSuc">恭喜你，支付成功！</div>
 
 	            <div class="backHome"><a href="${pageContext.request.contextPath}/switch/index">返回首页</a></div>
+	            <div class="backHome"><a href="${pageContext.request.contextPath}/order/toMyOrder">我的订单</a></div>
 		    </div>
 
 		</div>

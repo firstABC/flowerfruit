@@ -18,9 +18,11 @@
 	<script type="text/javascript" src="js/pick.min.1.0.2.js"></script>
 </head>
 <body>
-
+	
 	<div class="mainBody">
-		<jsp:include page="header.jsp" flush="true"/>
+		<header>
+			<jsp:include page="header.jsp" flush="true"/>
+		</header><!-- /header -->
 		<div class="main">
 			<div class="topmenu-user clearfix">
 				<ul>
@@ -87,10 +89,10 @@
 					</table>
 					
 					<!-- 写评价 -->
-					<div class="protocol-warp formAddress" id="plbox">
+					<div class="protocol-warp formAddress" id="plbox" hidden="hidden">
 						<div class="form-list">
 							<h2>写评价<span class="closeModel"></span></h2>
-							<input type="text" name="userId" id="uId" value="${userId }" class="focus">
+							<input type="text" name="userId" id="uId" value="${userId }" class="focus" hidden="hidden">
 							<input type="text" name="goodsId" id="gId" class="focus" hidden="hidden" value="">
 							<div class="writePj">
 								<textarea name="commentMsg" id="commentMsg" placeholder="请输入评论内容"></textarea>
@@ -102,7 +104,7 @@
 			</div>
 			
 		</div>
-
+		</div>
 		<footer>
 			<div class="footer-ul clearfix">
 		      <dl>

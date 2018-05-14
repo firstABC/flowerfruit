@@ -17,6 +17,6 @@
 	</insert>
 	
 	<select id="selectAddress" resultMap="addressMap" parameterType="String">
-		select * from userAddress where userId = #{userId}
+		select * from userAddress where userId = #{userId} 
 	</select>
 </mapper>
