@@ -75,7 +75,7 @@ public class UserController{
 		public String out(HttpServletRequest request) throws Exception{
 			HttpSession session = request.getSession();
 			session.invalidate();
-			return "forward:/switch/toIdex";
+			return "forward:/switch/index";
 			//return "index";
 		}
 		@RequestMapping("/register")
@@ -101,7 +101,7 @@ public class UserController{
 					userDao.addUser(user);
 					session.setAttribute("userName", user.getUserName());
 					session.setAttribute("userId", user.getUserId());
-					return "forward:/switch/toIdex";
+					return "forward:/switch/index";
 					//return "index";
 				}
 			}else{

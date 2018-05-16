@@ -35,13 +35,13 @@
 				<div class="infoBase">
 					<h2>基本信息</h2>
 				</div>
-				
+				<form action="" id="updateUserForm">
 				<div class="form-list">
-					<input type="text" name="userId" value="${sessionScope.user.userId }" hidden="hidden" class="focus">
+					<input type="text" name="userId" value="${sessionScope.user.userId }" hidden="hidden" class="focus" id="uId">
 					<div class="field">
 	                  	<label for="username"><em>*</em>姓名</label>
 	                  	<div class="input-box">
-	                    	<input type="text" name="userName" value="${sessionScope.user.userName}" title="" class="input-text">
+	                    	<input type="text" name="userName" value="${sessionScope.user.userName}" title="" class="input-text" id="name">
 	                  	</div>
 	                </div>
 	                <div class="field">
@@ -69,7 +69,7 @@
 	                  	</div>
 	                </div>
 				</div> 
-				
+				</form>
 			</div>
 			<!-- 提交 -->
 			<button type="button" title="提交" class="buttonTj" id="updateUser"><span>提交</span></button>
