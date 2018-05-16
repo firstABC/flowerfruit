@@ -25,11 +25,11 @@
 			<div class="logo">
 				<a href="index.jsp"><img src="${pageContext.request.contextPath}/images/logo.png" alt="水果鲜花"></a>
 			</div>
-	</div>
+		</div>
 		<div class="main">
 			<div class="account-login">
 				<div class="u-container">
-					<h1 class="m-login-til">欢迎回来 <span>还不是会员？<a href="AdminRegister.jsp">立即注册</a></span></h1>
+					<h1 class="m-login-til">欢迎回来 <span>还不是会员？<a href="${pageContext.request.contextPath}/AdminRegister.jsp">立即注册</a></span></h1>
 					<div class="m-login">
 					<form id="form_login" name="form_login" method="get" action="loginAdmin">
 		                <div class="m-form-group">
