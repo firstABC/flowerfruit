@@ -57,7 +57,6 @@
     <script type="text/javascript" src="dataTables/js/dataTables.tableTools.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			console.log( $('#table'));
 			var t = $('#table').DataTable({
 	           processing: true,
 	          	ajax: {
@@ -80,10 +79,23 @@
 		            "defaultContent": "<a href='#' id='editrow' class='btn btn-default' style='margin-right:5px;'>编辑</a><a href='#' id='delrow' class='btn btn-default'>删除</a>" 
 		        }],
 
-        		//插件的汉化
-		        "language": {
-                	url: 'dataTables/Chinese.txt'
-            	},
+		      //插件的汉化
+		        "oLanguage": {
+		            "sLengthMenu": "每页显示 _MENU_ 条记录",
+		            "sZeroRecords": "抱歉， 没有找到",
+		            "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+		            "sInfoEmpty": "没有数据",
+		            "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+		            "oPaginate": {
+		                "sFirst": false,
+		                "sPrevious": false,
+		                "sNext": false,
+		                "sLast": false
+		            },
+		            "sZeroRecords": "没有检索到数据",
+		            "sProcessing": "<img src='' />",
+		            "sSearch": "搜索"
+		        },
 	        });
 			/*编辑按钮*/
 		    $('#table tbody').on( 'click', 'a#editrow', function () {
@@ -130,6 +142,10 @@
 		            });
 		        }
 		    });
+	        //根据手机号查询
+		    $('#drugnameC').on( 'keyup', function () {
+			    t.search( this.value ).draw();
+			});
 	    });
 	</script>
 </body>
