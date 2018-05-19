@@ -30,13 +30,13 @@
 					<div class="brand"><a href="javascript:;">${goodsDetal.g_title}</a></div>
 					<div class="price-label price clearfix" style="display: none;">¥${goodsDetal.g_price }</div>
 					<div class="price-label sum_price clearfix">￥${goodsDetal.g_price }</div>
-					<div class="size">
+					<!-- <div class="size">
 						<ul>
 							<li class="active"><a href="javascript:;" title="">S</a></li>
 							<li><a href="javascript:;" title="">M</a></li>
 							<li><a href="javascript:;" title="">L</a></li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="size amount_box">
                     	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 					</div>

@@ -8,7 +8,6 @@
   <packaging>war</packaging>
 
   <name>shop</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
         <!-- Spring版本号 -->
@@ -143,7 +142,11 @@
 		    <artifactId>jackson-annotations</artifactId>
 		    <version>2.7.4</version>
 		</dependency>
-			
+		<dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-rt-frontend-jaxws</artifactId>
+    <version>3.2.4</version>
+</dependency>
   </dependencies>
   <profiles>  
     <profile>  

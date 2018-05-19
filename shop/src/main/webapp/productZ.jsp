@@ -22,8 +22,9 @@
 <body>
 
 	<div class="mainBody">
-		<jsp:include page="${pageContext.request.contextPath}/header.jsp" flush="true"/>
-
+		<header>
+			<jsp:include page="header.jsp" flush="true"/>
+		</header>
 		<div class="main">
 			<div class="product clearfix">
 				<div class="productLeft productLeft2">
@@ -32,6 +33,8 @@
 					if(ltGS!=null&&ltGS.size()>0){
 						for(GoodsSingle goodsSingle:ltGS){
 				%>
+					<input type="hidden" name="g_price" value="${goodsSingle.gs_price}">
+				    <input type="hidden" name="g_id" value="${goodsSingle.gs_id}">
 					<img src="${pageContext.request.contextPath}/upload/<%=goodsSingle.getLtMage().get(0).getPathName() %>" alt="">
 				<%
 						}
@@ -42,18 +45,18 @@
 					<div class="brand"><a href="javascript:;">水果鲜花自由搭配</a></div>
 					<div class="price-label price clearfix" style="display: none;">¥${gs_priceS}</div>
 					<div class="price-label sum_price clearfix">￥${gs_priceS}</div>
-					<div class="size">
+					<!-- <div class="size">
 						<ul>
 							<li class="active"><a href="javascript:;" title="">S</a></li>
 							<li><a href="javascript:;" title="">M</a></li>
 							<li><a href="javascript:;" title="">L</a></li>
 						</ul>
-					</div>
+					</div> -->
 					<div class="size amount_box">
                     	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 					</div>
-					<a href="javascript:;" class="cart">加入购物车</a>
-					<a href="" class="add_link">立即支付</a>
+					<!-- <a href="javascript:;" class="cart">加入购物车</a> -->
+					<a href="${pageContext.request.contextPath}/order/toPayment" class="add_link">立即结算</a>
 					<div class="note remark">
 			            <h3>备注<span>remark</span></h3>
 			            <div class="remarkInput"><textarea placeholder="请输入您的要求"></textarea></div>

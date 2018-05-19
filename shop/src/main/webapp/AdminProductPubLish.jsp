@@ -82,7 +82,7 @@
 	    			<tr>
 	    				<td width="100">上传商品图</td>
 	    				<td>
-	    					<p class="uploadTs">最多可上传4张图片</p>
+	    					<!-- <p class="uploadTs">最多可上传4张图片</p> -->
 	    					<div class="images">
 		    					<div class="img">
 						             <div class="addhao">

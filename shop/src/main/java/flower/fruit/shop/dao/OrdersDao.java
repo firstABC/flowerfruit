@@ -14,5 +14,5 @@ public interface OrdersDao {
 	public List<OrdersVO> selectAll();
 	
 	//根据用户id查询用户的订单
-	public List<Orders> selectMyOrder(String userId);
+	public List<OrdersVO> selectMyOrder(String userId);
 }

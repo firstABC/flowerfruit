@@ -25,6 +25,7 @@
 		<result property="g_title" column="g_title"/>
 		<result property="ua_name" column="ua_name"/>
 		<result property="ua_mobile" column="ua_name"/>
+		<result property="pathname" column="pathName"/>
 	</resultMap>
 	
 	<insert id="addOrder" parameterType="Orders">
@@ -34,12 +35,27 @@
 	
 	<select id="selectAll" resultMap="ordersMap2">
 		<!-- select * from ordersu -->
-		select o.*,g.g_title,ua.ua_name,ua.ua_mobile from ordersu o 
+		<!-- select o.*,g.g_title,ua.ua_name,ua.ua_mobile from ordersu o 
 		LEFT JOIN useraddress ua on o.user_id = ua.userId and o.ua_id = ua.ua_id
-		LEFT JOIN goods g on o.g_id = g.g_id
+		LEFT JOIN goods g on o.g_id = g.g_id -->
+		
+		select o.*,t.g_title,ua.ua_name,ua.ua_mobile,i.pathName from ordersu o 
+		LEFT JOIN useraddress ua on o.user_id = ua.userId and o.ua_id = ua.ua_id
+		LEFT JOIN (select r.g_id,r.g_title from 
+		((SELECT g.g_id as g_id,g.g_title as g_title from goods as g)
+		UNION ALL
+		(SELECT gs.gs_id as g_id,gs.gs_title as g_title from goodssingle as gs)) as r) as t on o.g_id = t.g_id
+		LEFT JOIN images as i on t.g_id = i.g_id 
 </select>
 	
-	<select id="selectMyOrder" parameterType="String" resultMap="ordersMap">
-		select * from ordersu where user_id = #{userId}
+	<select id="selectMyOrder" parameterType="String" resultMap="ordersMap2">
+		select o.*,t.g_title,ua.ua_name,ua.ua_mobile,i.pathName from ordersu o 
+		LEFT JOIN useraddress ua on o.user_id = ua.userId and o.ua_id = ua.ua_id
+		LEFT JOIN (select r.g_id,r.g_title from 
+		((SELECT g.g_id as g_id,g.g_title as g_title from goods as g)
+		UNION ALL
+		(SELECT gs.gs_id as g_id,gs.gs_title as g_title from goodssingle as gs)) as r) as t on o.g_id = t.g_id
+		LEFT JOIN images as i on t.g_id = i.g_id 
+		where o.user_id = #{userId}
 	</select>
 </mapper>

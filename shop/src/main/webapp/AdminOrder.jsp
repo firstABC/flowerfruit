@@ -30,6 +30,7 @@
 				<thead>
 					<tr>
 						<th>序号</th>
+						<th>图片</th>
 						<th>商品名</th>
 						<th>收货人</th>
 						<th>收货人联系方式</th>
@@ -46,6 +47,11 @@
 				
 					<tr>
 						<td><%=orders.getOr_id() %></td>
+						<td class="cpImg">
+								<img src="${pageContext.request.contextPath}/upload/<%=orders.getPathname() %>" alt="">
+								<p><%=orders.getG_title() %></p>
+						</td>
+						
 						<td><%=orders.getG_title() %></td>
 						<td><%=orders.getUa_name() %></td>
 						<td><%=orders.getUa_mobile() %></td>

@@ -14,6 +14,7 @@ public class OrdersVO {
 	private String ua_name;
 	private String ua_mobile;
 	private String g_title;
+	private String pathname;
 	
 	private Goods goods; 
 	
@@ -89,6 +90,12 @@ public class OrdersVO {
 	}
 	public void setG_title(String g_title) {
 		this.g_title = g_title;
+	}
+	public String getPathname() {
+		return pathname;
+	}
+	public void setPathname(String pathname) {
+		this.pathname = pathname;
 	}
 	
 	

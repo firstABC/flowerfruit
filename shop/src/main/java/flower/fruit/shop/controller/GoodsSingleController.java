@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -121,20 +122,25 @@ public class GoodsSingleController {
 		return map;
 	}
 	
-	@RequestMapping("/singleOR")
+	@RequestMapping(value = "/singleOR", method = RequestMethod.POST) 
 	public String singleOR(HttpServletRequest request,HttpSession session){
-		String[] gs_ids =request.getParameterValues("gs_ids");
+		//String[] gs_ids =request.getParameterValues("gs_ids");
+		String[] gs_ids = request.getParameter("gs_ids").split(",");
 		List<GoodsSingle> ltG = new ArrayList<GoodsSingle>();
 		double gs_priceS = 0;
-		for(int i=0;i<gs_ids.length;i++){
-			String gs_id = gs_ids[i];
-			GoodsSingle goodsSingle = goodsSingleDao.selectbyId(gs_id);
-			String gs_price = goodsSingle.getGs_price();
-			gs_priceS = gs_priceS+Double.parseDouble(gs_price);
-			ltG.add(goodsSingle);
+		if(gs_ids != null){
+			for(int i=0;i<gs_ids.length;i++){
+				String gs_id = gs_ids[i];
+				GoodsSingle goodsSingle = goodsSingleDao.selectbyId(gs_id);
+				String gs_price = goodsSingle.getGs_price();
+				gs_priceS = gs_priceS+Double.parseDouble(gs_price);
+				ltG.add(goodsSingle);
+			}
+			session.setAttribute("gs_priceS", gs_priceS);
+			session.setAttribute("gsLt", ltG);
+			return "/productZ";
+		}else{
+			return "forward:/switch/index";
 		}
-		session.setAttribute("gs_priceS", gs_priceS);
-		session.setAttribute("gsLt", ltG);
-		return "/productZ";
 	}
 }

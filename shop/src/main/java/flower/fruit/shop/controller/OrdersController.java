@@ -1,6 +1,7 @@
 package flower.fruit.shop.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import flower.fruit.shop.dao.GoodsDao;
 import flower.fruit.shop.dao.OrdersDao;
 import flower.fruit.shop.dao.UserAddressDao;
 import flower.fruit.shop.domain.Goods;
+import flower.fruit.shop.domain.GoodsSingle;
 import flower.fruit.shop.domain.Orders;
 import flower.fruit.shop.domain.OrdersVO;
 import flower.fruit.shop.domain.UserAddress;
@@ -35,7 +37,6 @@ public class OrdersController {
 	
 	@RequestMapping("/toAdd")
 	public String addOrder(HttpServletRequest request,HttpSession session){
-		Map map = new ConcurrentHashMap();
 		String g_id = request.getParameter("g_id");
 		Double g_price = Double.parseDouble(request.getParameter("g_price"));
 		String ua_id = request.getParameter("ua_id");
@@ -76,16 +77,7 @@ public class OrdersController {
 	@RequestMapping("/orderM")
 	public String selectAllOrder(HttpServletRequest request,HttpSession session){
 		List<OrdersVO> ltOr = ordersDao.selectAll();
-		//Map map = new ConcurrentHashMap<String,String>();
-		//if(ltOr!=null&&ltOr.size()>0){
-			session.setAttribute("ltOr", ltOr);
-			/*for(Orders order:ltOr){
-				String g_id = order.getG_id();
-				Goods goods = goodsDao.selectGoodsById(g_id);
-				map.put(order.getOr_id(), goods.getG_title());
-			}
-			session.setAttribute("Or_map", map);*/
-		//}
+		session.setAttribute("ltOr", ltOr);
 		return "/AdminOrder";
 	}
 	
@@ -106,17 +98,54 @@ public class OrdersController {
 	public String myOrder(HttpServletRequest request,HttpSession session){
 		String userId = (String) session.getAttribute("userId");
 		if(userId!=null&&userId!=""){
-			List<Orders> ltOrder =  ordersDao.selectMyOrder(userId);
-			if(ltOrder!=null&&ltOrder.size()>0){
+			List<OrdersVO> ltOrder =  ordersDao.selectMyOrder(userId);
+			/*if(ltOrder!=null&&ltOrder.size()>0){
 				for(Orders orders:ltOrder){
 					Goods goods = goodsDao.selectGoodsById(orders.getG_id());
 					orders.setGoods(goods);
 				}
-			}
+			}*/
 			session.setAttribute("ltMyOrder", ltOrder);
 			return "/myMenu";
 		}else{
 			return "/login";
 		}
+	}
+	
+	@RequestMapping("/toAddZ")
+	public String addOrderZ(HttpServletRequest request,HttpSession session){
+		String userId = (String) session.getAttribute("userId");
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String ua_id = request.getParameter("ua_id");
+		String or_numberStr =request.getParameter("or_number");
+		String uuid = UUID.randomUUID().toString();
+		int or_number = 1;
+		if(or_numberStr != null&&or_numberStr !=""){
+			or_number = Integer.parseInt(or_numberStr);
+		}
+		String[] gs_ids = request.getParameter("gs_ids").split(",");
+		String[] gs_prices = request.getParameter("gs_prices").split(",");
+		
+		if(gs_ids != null&&gs_prices != null){
+			for(int i=0;i<gs_ids.length;i++){
+				Orders orders = new Orders();
+				orders.setOr_id(uuid);
+				orders.setUser_id(userId);
+				orders.setOr_status("A");
+				orders.setOr_date(sdf.format(date));
+				orders.setUa_id(ua_id);
+				orders.setOr_number(or_number);
+				Double g_price = Double.parseDouble(gs_prices[i]);
+				Double or_price = g_price*or_number;
+				orders.setG_id(gs_ids[i]);
+				orders.setOr_price(or_price.toString());
+				ordersDao.addOrder(orders);
+			}
+			return "/paymentSuc";
+		}else{
+			return "/paymentFail";
+		}
+			
 	}
 }

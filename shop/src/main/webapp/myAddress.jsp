@@ -81,7 +81,7 @@
 				<!-- 新建配送地址 -->
 				<div class="protocol-warp formAddress" style="display: none;">
 					<div class="form-list">
-						<h2>新建配送地址<a href="javascript:;" ><img src="${pageContext.request.contextPath}/images/del.png" alt="删除"></a></h2>
+						<h2>新建配送地址<a href="javascript:;"  class="delImg"><img src="${pageContext.request.contextPath}/images/del.png" alt="删除"></a></h2>
 						<div class="field">
 		                  	<label for="username"><em>*</em>收件人</label>
 		                  	<div class="input-box">

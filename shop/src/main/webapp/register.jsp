@@ -7,12 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>注册</title>
 
-	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reset.css">
 	<link rel="stylesheet" href="css/css.css">
 
-	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="js/demo.js"></script>
-	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="j${pageContext.request.contextPath}/s/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/demo.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
 </head>
 <body>
 
