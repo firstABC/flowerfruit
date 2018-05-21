@@ -91,7 +91,7 @@
 					<!-- 写评价 -->
 					<div class="protocol-warp formAddress" id="plbox" hidden="hidden">
 						<div class="form-list">
-							<h2>写评价<span class="closeModel"></span></h2>
+							<h2>写评价<a href="javascript:;"  class="delImg"><img src="${pageContext.request.contextPath}/images/del.png" alt="删除"></a></h2>
 							<input type="text" name="userId" id="uId" value="${userId }" class="focus" hidden="hidden">
 							<input type="text" name="goodsId" id="gId" class="focus" hidden="hidden" value="">
 							<div class="writePj">
@@ -137,8 +137,7 @@
 		
 		
 	<script type="text/javascript">
-	
-	
+
 	function toShow(g_id){
 		$("#gId").val(g_id)
 		$('#plbox').show();
@@ -168,7 +167,9 @@
 		
 	}
 		$(function(){
-			
+			 $('.delImg, .buttonTj').on('click', function(event) {
+			    	$('#plbox').hide();
+			  });
 		})
 	</script>
 

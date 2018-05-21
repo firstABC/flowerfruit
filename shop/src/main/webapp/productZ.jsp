@@ -56,7 +56,7 @@
                     	<span class="reduce reSty">-</span><input class="sum" name="" type="text" value="1" disabled="disabled"><span class="plus">+</span>
 					</div>
 					<!-- <a href="javascript:;" class="cart">加入购物车</a> -->
-					<a href="${pageContext.request.contextPath}/order/toPayment" class="add_link">立即结算</a>
+					<a href="${pageContext.request.contextPath}/order/toPaymentZ" class="add_link">立即结算</a>
 					<div class="note remark">
 			            <h3>备注<span>remark</span></h3>
 			            <div class="remarkInput"><textarea placeholder="请输入您的要求"></textarea></div>

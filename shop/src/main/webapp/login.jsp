@@ -104,7 +104,7 @@
 		      </div>
 		</footer>
 	</div>
-
+	<span id ="msg" style="display:none">${msg}</span>   
 	<script type="text/javascript">
 		$(function(){
 		    $('.topmenu li').click(function(){
@@ -112,6 +112,11 @@
 		    	$(this).addClass('active');
 		    })
 		})
+		var cont=$("#msg").text();
+		if(cont != null&&cont != ""){
+			console.log(cont);
+			alert(cont);
+		}
 	</script>
 
 </body>

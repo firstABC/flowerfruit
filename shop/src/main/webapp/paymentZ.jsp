@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.*" %>
 <%@ page import="flower.fruit.shop.domain.UserAddress" %>
+<%@ page import="flower.fruit.shop.domain.GoodsSingle" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,30 +19,45 @@
 	<!-- 订单支付 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/carts.js"></script>
 	<script type="text/javascript">
-		function checkForm(){
-			
-			
+		function toAddAddress(){
+			var ua_name = $("#ua_name").val()
+			var ua_mobile = $("#ua_mobile").val()
+			var ua_detal = $("#ua_detal").val()
+			var ua_province = $("#ua_province").val()
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/addRess/add",
+				data:"ua_name="+ua_name+"&ua_mobile="+ua_mobile+"&ua_detal="+ua_detal+"&ua_province="+ua_province,
+				success:function(data){
+					window.location.reload();	//刷新本页
+				}
+			});
 		}
 		function toCreateOrder(){
-			/* var option = {
-		    		url:'${pageContext.request.getContextPath()}/order/toAdd',
-		    		type :"post",
-		    		dataType:'json',
-		    		headers:{"ClientCallMode" : "ajax"}, 
-		    		success : function(data) {
-		    			if(data.message == 'error'){
-							alert("购买失败！");
-						}else{
-							window.location.href="${pageContext.request.contextPath}/paymentSuc.jsp";
-							//alert("修改成功！");
-						}
-		            },
-		            error: function(data) {
-		                alert(JSON.stringify(data) + "--修改失败,请刷新后重试");
-		            }
-		         }; */
+			var ids = "";
+			var prices = "";
+			var temp1 = "";
+			var temp2 = "";
+			var a = document.getElementsByName("check");
+			for(var i=0;i<a.length;i++){
+				if(a[i].checked) {
+					var gs_id = $(a[i]).parent('td').siblings('td').find('.gs_id').val();
+					var gs_price = $(a[i]).parent('td').siblings('td').find('.gs_price').text();
+					temp1 = gs_id;
+					temp2 = gs_price;
+					ids=ids+","+temp1;
+					prices=prices+","+temp2;
+				}
+			}
+			$('#gs_ids').val(ids.substring(1,ids.length))
+			$('#gs_prices').val(prices.substring(1,prices.length))
+			console.log($('#gs_ids').val()+":"+$('#gs_prices').val())
 			if($('.adress>ul>li').hasClass("active")){
-				$("#publish_form").submit();
+				if($('#gs_ids').val() != null&&$('#gs_prices').val()!=null){
+					$('#publish_form').submit();
+				}else{
+					alert("请选择商品");
+				}
 			}else{
 				alert("请选择收货地址");
 			}
@@ -56,7 +73,7 @@
 		</header><!-- /header -->
 		<div class="main">
 			<div class="newcart payment">
-			<form action="${pageContext.request.contextPath}/order/toAdd" method="post" id="publish_form" name="publish_form">
+			<form action="${pageContext.request.contextPath}/order/toAddZ" method="post" id="publish_form" name="publish_form">
 				<div class="page-title">
 	                <h1>支付&nbsp;payment</h1>
 	            </div>
@@ -109,23 +126,31 @@
 		            				<th style="text-align: center">件数</th>
 		            				<th>小计</th>
 		            			</tr>
-				                <tr class="order_lists">
+		            			<%
+		    					List<GoodsSingle> ltGS =  (List<GoodsSingle>)session.getAttribute("gsLt");
+		            			Double price = (Double)session.getAttribute("gs_priceS");
+		    					if(ltGS!=null&&ltGS.size()>0){
+		    						for(GoodsSingle gs:ltGS){
+		            			%>
+		            			<div id="zhGS">	
+		            				<input type="hidden" name="gs_prices" value="" id="gs_prices">
+				    				<input type="hidden" name="gs_ids" value="" id="gs_ids">
+		            				<tr class="order_lists">
 				                	<td>
-				                        <input type="checkbox" id="checkbox_8" class="son_check">
+				                        <input type="checkbox" class="son_check" name="check">
 				                        <label for="checkbox_8"></label>
 				                    </td>
-				                    <td><a href="javascript:;" target="_blank"><img src="${pageContext.request.contextPath}/upload/${goodsDetal.ltMage.get(0).pathName }"></a></td>
+				                    <td><a href="javascript:;" target="_blank"><img src="${pageContext.request.contextPath}/upload/<%=gs.getLtMage().get(0).getPathName() %>"></a></td>
 				                    <td>
 		            					<a href="javascript:;" target="_blank">
-				                            <p style="width:300px;padding-right:20px">${goodsDetal.g_title}</p>
-				                            <input type="hidden" name="g_price" value="${goodsDetal.g_price}">
-				                            <input type="hidden" name="g_id" value="${goodsDetal.g_id}">
+				                            <p style="width:300px;padding-right:20px">名称：<%=gs.getGs_title()%></p>
+				                            <input type="hidden" name="gs_id" value="<%= gs.getGs_id()%>" class="gs_id">
 				                            <p class="new-sku" style="width:300px;padding-right:20px"></p>
-				                            <p class="size">尺寸：S</p>
+				                            <p class="size">类型：<%= "A".equals(gs.getGs_type())?"水果":"鲜花"%></p>
 			                        	</a>
 			                        </td>
 				                    <td>
-				                        <p class="price">￥${goodsDetal.g_price }</p>
+				                       		￥<p class="gs_price"><%=gs.getGs_price() %></p>
 				                    </td>
 				                    <td>
 			                            <div class="amount_box">
@@ -133,9 +158,20 @@
 			                            </div>
 			                        </td>
 				                    <td>
-				                        <p class="sum_price">￥${goodsDetal.g_price }</p>
+				                        <p class="sum_price">￥<%=gs.getGs_price() %></p>
 				                    </td>
+				                </div>
 				                </tr>
+		            			<%
+			            			}
+		            			}else{
+		            			%>
+				                <tr class="order_lists">
+				                	
+				                </tr>
+				                <%
+		            			}
+				                %>
 				            </table>
 				           
 				        </div>
@@ -203,7 +239,7 @@
 					
 				}
 			})
-			// 新增收货地址
+		    // 新增收货地址
 		    $('.adress .adressAdd').click(function(){
 		    	$('.costBox').show();
 		    	
@@ -211,9 +247,8 @@
 		    $('.delImg, .buttonTj').on('click', function(event) {
 		    	$('.costBox').hide();
 		    });
-
 		}); 
-
+	
 	</script>
 
 </body>

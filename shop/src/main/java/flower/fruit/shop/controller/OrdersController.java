@@ -112,6 +112,19 @@ public class OrdersController {
 		}
 	}
 	
+	@RequestMapping("/toPaymentZ")
+	public String toPayZ(HttpServletRequest request,HttpSession session){
+		String userId = (String) session.getAttribute("userId");
+		if(userId!=null&&userId!=""){
+			List<UserAddress> ltUA = userAddressDao.selectAddress(userId);
+			if(ltUA!=null&&ltUA.size()>0)
+				session.setAttribute("ltUA", ltUA);
+			return "/paymentZ";
+		}else{
+			return "/login";
+		}
+	}
+	
 	@RequestMapping("/toAddZ")
 	public String addOrderZ(HttpServletRequest request,HttpSession session){
 		String userId = (String) session.getAttribute("userId");
